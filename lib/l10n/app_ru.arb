@@ -1,0 +1,5 @@
+{
+    "language":"Русский",
+    "@language":{"description": "Свой язык!"},
+    "helloWorld":"Привет мирок"
+}
