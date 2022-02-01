@@ -79,12 +79,20 @@ flutter:
       - assets/icons/right.svg
       - assets/icons/calendar.svg
       - assets/icons/home.svg
+      - assets/icons/favouritesplus.svg
+      - assets/icons/favouritesminus.svg
       - assets/icons/square.svg
       - assets/icons/user.svg
+      - assets/icons/favourites.svg
+      - assets/icons/filter.svg
+      - assets/icons/location.svg
+      - assets/icons/zoom.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png
       - assets/images/cat.png
+      - assets/images/greenbg.svg
+      - assets/images/whitebg.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

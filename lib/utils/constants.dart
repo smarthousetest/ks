@@ -10,6 +10,7 @@ Color kPrimaryColor = Color(0xFF2E8B90);
 Color kBacColor = Color(0xFFF6F9F9);
 
 Color kButtonColor = Color(0xFF3B8992);
+Color kTextGreenColor = Color(0xFF3B8992);
 Color kShadowColor = Color(0xFF59377C7C);
 
 BoxDecoration kDecorationBox = BoxDecoration(
