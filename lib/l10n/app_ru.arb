@@ -1,5 +1,19 @@
 {
     "language":"Русский",
-    "@language":{"description": "Свой язык!"},
-    "helloWorld":"Привет мирок"
+    "applynow": "Подать заявку",
+    "eventprogram":"Программа мероприятия",
+    "business":"Деловая",
+    "cultural":"Культурная",
+    "industrial":"Промышленная",
+    "speakers":"Спикеры",
+    "informationaboutspeakers":"Информация о выступающих ",
+    "news":"Новости",
+    "actualnews":"Актуальные события",
+    "partners":"Партнеры",
+"eventmap":"Карта мероприятия",
+"transport":"Транспорт",
+"transportschedule":"Расписание транспорта мероприятия",
+"contacts":"Контакты",
+"helpfulinformation":"Полезная информация",
+"learnmore":"Узнать больше"
 }

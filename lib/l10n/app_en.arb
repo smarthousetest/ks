@@ -1,12 +1,21 @@
 {
     "language": "English",
-    "@language":{
-      "description": "The current Language"
-    },
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "A programmer greeting"
-    },
+    "applynow": "Apply now",
+    "eventprogram":"Event program",
+    "business":"Business",
+    "cultural":"Cultural",
+    "industrial":"Industrial",
+    "speakers":"Speakers",
+    "informationaboutspeakers":"Information about speakers",
+    "news":"News",
+    "actualnews":"Actual news",
+"partners":"Partners",
+"eventmap":"Eventmap",
+"transport":"Transport",
+"transportschedule":"Transport schedule",
+"contacts":"Contacts",
+"helpfulinformation":"Helpful information",
+"learnmore":"Learn more",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

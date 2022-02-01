@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^1.0.3
+
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -61,9 +63,21 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - lang\en.json
-  #   - lang\ru.json
+  assets:
+      - assets/icons/search.svg
+      - assets/icons/notification.svg
+      - assets/icons/business.svg
+      - assets/icons/industrial.svg
+      - assets/icons/cultural.svg
+      - assets/icons/speakers.svg
+      - assets/icons/news.svg
+      - assets/icons/schedule.svg
+      - assets/icons/contacts.svg
+      - assets/icons/right.svg
+      - assets/images/logoen.svg
+      - assets/images/map.png
+      - assets/images/logom.png
+      - assets/images/cat.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

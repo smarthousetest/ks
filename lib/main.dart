@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kazansummit/auth.dart';
+import 'package:kazansummit/screens/main_page.dart';
+import 'package:kazansummit/screens/management.dart';
 import 'utils/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: theme(),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Auth(),
+      home: Management(),
     );
   }
 }
