@@ -15,5 +15,9 @@
 "transportschedule":"Расписание транспорта мероприятия",
 "contacts":"Контакты",
 "helpfulinformation":"Полезная информация",
-"learnmore":"Узнать больше"
+"learnmore":"Узнать больше",
+"main":"Главная",
+"program":"Расписание",
+"services":"Сервисы",
+"profile":"Профиль"
 }

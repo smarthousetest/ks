@@ -33,11 +33,8 @@ class MainPage extends StatelessWidget {
                       ],
                     ),
                     Center(
-                      child: Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          "assets/images/logoen.svg",
-                        ),
+                      child: SvgPicture.asset(
+                        "assets/images/logoen.svg",
                       ),
                     ),
                   ],
@@ -412,7 +409,8 @@ class MainPage extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 16),
             ],
           ),
         ),

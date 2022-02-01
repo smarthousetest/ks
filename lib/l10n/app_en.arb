@@ -16,6 +16,10 @@
 "contacts":"Contacts",
 "helpfulinformation":"Helpful information",
 "learnmore":"Learn more",
+"main":"Main",
+"program":"Program",
+"services":"Services",
+"profile":"Profile",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

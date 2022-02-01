@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.0.3
+  custom_navigation_bar: ^0.8.2
+  get_it: ^7.2.0
+  flutter_bloc: ^8.0.1
 
   flutter_localizations:
     sdk: flutter
@@ -74,6 +77,10 @@ flutter:
       - assets/icons/schedule.svg
       - assets/icons/contacts.svg
       - assets/icons/right.svg
+      - assets/icons/calendar.svg
+      - assets/icons/home.svg
+      - assets/icons/square.svg
+      - assets/icons/user.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png
