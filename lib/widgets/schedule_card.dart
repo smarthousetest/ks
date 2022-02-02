@@ -20,7 +20,7 @@ class ScheduleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 8, bottom: 8),
+      margin: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
       decoration: kDecorationBox,
       child: Stack(
         children: [

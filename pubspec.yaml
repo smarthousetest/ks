@@ -33,6 +33,8 @@ dependencies:
   custom_navigation_bar: ^0.8.2
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
+  custom_sliding_segmented_control: ^1.4.0
+  buttons_tabbar: ^1.3.4
 
   flutter_localizations:
     sdk: flutter
