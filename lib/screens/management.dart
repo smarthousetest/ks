@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/cubit/state.dart';
+import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:kazansummit/screens/schedule_page.dart';
@@ -16,14 +17,26 @@ class Management extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationControllerSelect, int>(
         builder: (context, select) => Scaffold(
-              extendBody: true,
               body: _widgetOptions.elementAt(select),
               bottomNavigationBar: Container(
-                margin: EdgeInsets.only(bottom: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: kShadowColor.withOpacity(0.4),
+                        spreadRadius: 4,
+                        blurRadius: 10, // changes position of shadow
+                      )
+                    ],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    )),
                 child: CustomNavigationBar(
                     iconSize: 30.0,
+                    elevation: 0,
                     opacity: 0.0,
-                    borderRadius: Radius.circular(5),
+                    borderRadius: Radius.circular(8),
                     selectedColor: Color(0xFF3B8992),
                     strokeColor: Color(0xFF3B8992),
                     unSelectedColor: Color(0xFFBDBDBD),
@@ -77,7 +90,7 @@ class Management extends StatelessWidget {
                                   : FontWeight.w400),
                         ),
                         icon: SvgPicture.asset(
-                          "assets/icons/square.svg",
+                          "assets/icons/briefcase.svg",
                           color: select == 2
                               ? Color(0xFF3B8992)
                               : Color(0xFFBDBDBD),
@@ -102,7 +115,7 @@ class Management extends StatelessWidget {
                         ),
                       ),
                     ],
-                    isFloating: true,
+                    isFloating: false,
                     currentIndex: select,
                     onTap: (index) {
                       context

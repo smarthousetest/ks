@@ -11,6 +11,8 @@ Color kBacColor = Color(0xFFF6F9F9);
 
 Color kButtonColor = Color(0xFF3B8992);
 
+Color kIconColor = Color(0xFF3B8992);
+
 Color kTextGreenColor = Color(0xFF3B8992);
 Color kTextGreyColor = Color(0xFF828282);
 
@@ -32,3 +34,9 @@ BoxDecoration kDecorationBox = BoxDecoration(
     ),
   ],
 );
+
+TextStyle kAppBarTextStyle = TextStyle(
+    color: Colors.black, fontWeight: FontWeight.w700, fontSize: MediumTextSize);
+
+TextStyle kContentTextStyle =
+    TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16);

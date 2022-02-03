@@ -35,6 +35,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   custom_sliding_segmented_control: ^1.4.0
   buttons_tabbar: ^1.3.4
+  url_launcher: ^6.0.18
+  auto_size_text: ^3.0.0
+
 
   flutter_localizations:
     sdk: flutter
@@ -89,6 +92,12 @@ flutter:
       - assets/icons/filter.svg
       - assets/icons/location.svg
       - assets/icons/zoom.svg
+      - assets/icons/mail.svg
+      - assets/icons/phone.svg
+      - assets/icons/printer.svg
+      - assets/icons/briefcase.svg
+      - assets/icons/instagram.svg
+      - assets/icons/tw.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

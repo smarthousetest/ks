@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -64,15 +66,19 @@ class MainPage extends StatelessWidget {
                       )),
                 ),
                 SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    "${AppLocalizations.of(context)?.eventprogram}",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
-                  ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.eventprogram}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 10),
                 SingleChildScrollView(
@@ -227,12 +233,15 @@ class MainPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "${AppLocalizations.of(context)?.partners}",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.partners}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
+                      ),
                     ),
                     Container(
                       child: Row(
@@ -328,21 +337,28 @@ class MainPage extends StatelessWidget {
                       ],
                     )),
                 SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    "${AppLocalizations.of(context)?.eventmap}",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
-                  ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.eventmap}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 10),
-                Image.asset(
-                  "assets/images/map.png",
-                  height: 200,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  child: Image.asset(
+                    "assets/images/map.png",
+                    height: 140,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(height: 16),
                 Container(
@@ -383,41 +399,46 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                Container(
-                  decoration: kDecorationBox,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 8, left: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${AppLocalizations.of(context)?.contacts}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 3),
-                            Text(
-                              "${AppLocalizations.of(context)?.helpfulinformation}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 14),
-                            ),
-                          ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/contactpage');
+                  },
+                  child: Container(
+                    decoration: kDecorationBox,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, bottom: 8, left: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${AppLocalizations.of(context)?.contacts}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 3),
+                              Text(
+                                "${AppLocalizations.of(context)?.helpfulinformation}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 16, top: 8, bottom: 8),
-                        child: SvgPicture.asset("assets/icons/contacts.svg"),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 16, top: 8, bottom: 8),
+                          child: SvgPicture.asset("assets/icons/contacts.svg"),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),

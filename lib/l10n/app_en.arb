@@ -20,6 +20,9 @@
 "program":"Program",
 "services":"Services",
 "profile":"Profile",
+"livestream":"Live stream",
+"address":"Address: 420049, Kazan, Agronomicheskaya St, 11",
+"feedback":"Feedback",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

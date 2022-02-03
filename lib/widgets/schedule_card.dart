@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/utils/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ScheduleCard extends StatelessWidget {
   String time;
@@ -82,7 +83,7 @@ class ScheduleCard extends StatelessWidget {
                                     color: kTextGreenColor),
                                 SizedBox(width: 9),
                                 Text(
-                                  "Трансляция",
+                                  "${AppLocalizations.of(context)?.livestream}",
                                   style: TextStyle(
                                       color: kTextGreenColor,
                                       fontWeight: FontWeight.w400,
