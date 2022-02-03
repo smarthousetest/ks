@@ -37,6 +37,7 @@ dependencies:
   buttons_tabbar: ^1.3.4
   url_launcher: ^6.0.18
   auto_size_text: ^3.0.0
+  sliding_up_panel: ^2.0.0+1
 
 
   flutter_localizations:
@@ -98,6 +99,7 @@ flutter:
       - assets/icons/briefcase.svg
       - assets/icons/instagram.svg
       - assets/icons/tw.svg
+      - assets/icons/X.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

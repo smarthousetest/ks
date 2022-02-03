@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kazansummit/cubit/state.dart';
+import 'package:kazansummit/cubit/cubit.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:kazansummit/screens/schedule_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kazansummit/widgets/sliding_filter.dart';
 
 final List<Widget> _widgetOptions = <Widget>[MainPage(), SchedulePage()];
 

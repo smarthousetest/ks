@@ -58,7 +58,7 @@ class MainPage extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {},
                       child: Padding(
-                        padding: const EdgeInsets.all(17.0),
+                        padding: const EdgeInsets.all(14.0),
                         child: Text(
                           "${AppLocalizations.of(context)?.applynow}",
                           style: TextStyle(fontSize: 16),

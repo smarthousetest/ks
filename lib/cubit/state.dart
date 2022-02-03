@@ -1,9 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+abstract class FilterState {}
 
-class BottomNavigationControllerSelect extends Cubit<int> {
-  BottomNavigationControllerSelect() : super(0);
+class FilterOpenState extends FilterState {}
 
-  void select(int index) {
-    emit(index);
-  }
-}
+class FilterClosedState extends FilterState {}

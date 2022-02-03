@@ -6,26 +6,22 @@ const BodyTextSize = 14.0;
 
 const String FontFamilyText = 'Ubuntu';
 
-Color kPrimaryColor = Color(0xFF2E8B90);
-Color kBacColor = Color(0xFFF6F9F9);
+Color kPrimaryColor = const Color(0xFF2E8B90);
+Color kBacColor = const Color(0xFFF6F9F9);
 
-Color kButtonColor = Color(0xFF3B8992);
+Color kButtonColor = const Color(0xFF3B8992);
 
-Color kIconColor = Color(0xFF3B8992);
+Color kIconColor = const Color(0xFF3B8992);
 
-Color kTextGreenColor = Color(0xFF3B8992);
-Color kTextGreyColor = Color(0xFF828282);
+Color kTextGreenColor = const Color(0xFF3B8992);
+Color kTextGreyColor = const Color(0xFF828282);
 
-Color kUnSelectProgramColor = Color(0xFFEBECEC);
-Color kShadowColor = Color(0xFF59377C7C);
+Color kUnSelectProgramColor = const Color(0xFFEBECEC);
+Color kShadowColor = const Color(0xFF59377C7C);
 
 BoxDecoration kDecorationBox = BoxDecoration(
   color: Colors.white,
-  borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(10),
-      topRight: Radius.circular(10),
-      bottomLeft: Radius.circular(10),
-      bottomRight: Radius.circular(10)),
+  borderRadius: const BorderRadius.all(Radius.circular(10)),
   boxShadow: [
     BoxShadow(
       color: kShadowColor.withOpacity(0.1),
@@ -35,8 +31,14 @@ BoxDecoration kDecorationBox = BoxDecoration(
   ],
 );
 
-TextStyle kAppBarTextStyle = TextStyle(
+TextStyle kAppBarTextStyle = const TextStyle(
     color: Colors.black, fontWeight: FontWeight.w700, fontSize: MediumTextSize);
 
-TextStyle kContentTextStyle =
-    TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16);
+TextStyle kContentTextStyle = const TextStyle(
+    color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16);
+
+TextStyle kFilterTextStyle = const TextStyle(
+    color: Color(0xFF212121),
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    fontStyle: FontStyle.normal);

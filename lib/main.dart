@@ -6,7 +6,8 @@ import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:kazansummit/screens/management.dart';
 import 'package:kazansummit/utils/constants.dart';
-import 'cubit/state.dart';
+import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/widgets/sliding_filter.dart';
 import 'utils/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/cubit/locator_services.dart' as servic;
@@ -33,6 +34,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider<BottomNavigationControllerSelect>(
             create: (context) => sl<BottomNavigationControllerSelect>()),
+        BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -40,7 +42,11 @@ class _MyAppState extends State<MyApp> {
         theme: theme(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: Management(),
+        home: Scaffold(
+          body: Stack(
+            children: [Management(), SlidingFilter()],
+          ),
+        ),
         routes: <String, WidgetBuilder>{
           '/contactpage': (BuildContext context) => ContactsPage(),
         },

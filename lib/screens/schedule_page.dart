@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kazansummit/cubit/cubit.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/widgets/schedule_card.dart';
 import 'dart:math' as math;
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:provider/src/provider.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({Key? key}) : super(key: key);
@@ -51,7 +53,10 @@ class _SchedulePageState extends State<SchedulePage>
               icon: SvgPicture.asset("assets/icons/favourites.svg")),
           IconButton(
               iconSize: 40,
-              onPressed: () {},
+              onPressed: () {
+                FilterCubit filterCubit = context.read<FilterCubit>();
+                filterCubit.open();
+              },
               icon: SvgPicture.asset("assets/icons/filter.svg"))
         ],
         bottom: PreferredSize(
