@@ -154,41 +154,46 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-                Container(
-                  decoration: kDecorationBox,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 8, left: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${AppLocalizations.of(context)?.speakers}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 3),
-                            Text(
-                              "${AppLocalizations.of(context)?.informationaboutspeakers}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 14),
-                            ),
-                          ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/speakerpage');
+                  },
+                  child: Container(
+                    decoration: kDecorationBox,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, bottom: 8, left: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${AppLocalizations.of(context)?.speakers}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 3),
+                              Text(
+                                "${AppLocalizations.of(context)?.informationaboutspeakers}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 16, top: 8, bottom: 8),
-                        child: SvgPicture.asset("assets/icons/speakers.svg"),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 16, top: 8, bottom: 8),
+                          child: SvgPicture.asset("assets/icons/speakers.svg"),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),

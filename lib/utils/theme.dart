@@ -5,6 +5,7 @@ import 'constants.dart';
 ThemeData theme() => ThemeData(
     brightness: Brightness.light,
     primaryColor: kPrimaryColor,
+    colorScheme: ThemeData().colorScheme.copyWith(primary: kPrimaryColor),
     scaffoldBackgroundColor: kBacColor,
     fontFamily: FontFamilyText,
     elevatedButtonTheme: ElevatedButtonThemeData(

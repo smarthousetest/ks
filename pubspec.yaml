@@ -104,6 +104,7 @@ flutter:
       - assets/icons/left.svg
       - assets/icons/alignleft.svg
       - assets/icons/notifplus.svg
+      - assets/icons/search.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png
