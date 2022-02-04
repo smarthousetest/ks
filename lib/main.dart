@@ -6,6 +6,7 @@ import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/event_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:kazansummit/screens/management.dart';
+import 'package:kazansummit/screens/news_page.dart';
 import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/cubit/cubit.dart';
@@ -53,6 +54,7 @@ class _MyAppState extends State<MyApp> {
           '/contactpage': (BuildContext context) => ContactsPage(),
           '/eventpage': (BuildContext context) => EventPage(),
           '/speakerpage': (BuildContext context) => SpeakerPage(),
+          '/newspage': (BuildContext context) => NewsPage(),
         },
       ),
     );

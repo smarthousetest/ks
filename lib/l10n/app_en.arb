@@ -23,6 +23,13 @@
 "livestream":"Live stream",
 "address":"Address: 420049, Kazan, Agronomicheskaya St, 11",
 "feedback":"Feedback",
+"search":"Search",
+"description":"Description",
+"notifym":"Notify in 10 minutes",
+"filter":"Filter",
+"topics":"Topics",
+"formats":"Formats",
+"show":"Show",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

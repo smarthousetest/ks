@@ -197,41 +197,46 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                Container(
-                  decoration: kDecorationBox,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 8, left: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${AppLocalizations.of(context)?.news}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 3),
-                            Text(
-                              "${AppLocalizations.of(context)?.actualnews}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 14),
-                            ),
-                          ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/newspage');
+                  },
+                  child: Container(
+                    decoration: kDecorationBox,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, bottom: 8, left: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${AppLocalizations.of(context)?.news}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(height: 3),
+                              Text(
+                                "${AppLocalizations.of(context)?.actualnews}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 16, top: 8, bottom: 8),
-                        child: SvgPicture.asset("assets/icons/news.svg"),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 16, top: 8, bottom: 8),
+                          child: SvgPicture.asset("assets/icons/news.svg"),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),

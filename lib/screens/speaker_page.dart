@@ -15,7 +15,8 @@ class SpeakerPage extends StatelessWidget {
           iconTheme: IconThemeData(color: kIconColor),
           elevation: 0,
           centerTitle: true,
-          title: Text("Спикеры", style: kAppBarTextStyle),
+          title: Text("${AppLocalizations.of(context)?.speakers}",
+              style: kAppBarTextStyle),
           actions: [
             IconButton(
                 iconSize: 40,
@@ -29,10 +30,10 @@ class SpeakerPage extends StatelessWidget {
                   const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 6),
               child: TextFormField(
                 //  readOnly: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  hintText: 'Поиск',
+                  hintText: '${AppLocalizations.of(context)?.search}',
                   prefixIcon: Icon(
                     Icons.search,
                   ),

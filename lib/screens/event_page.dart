@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/widgets/speaker_card.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({Key? key}) : super(key: key);
@@ -14,10 +15,6 @@ class EventPage extends StatefulWidget {
 
 class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
   late TabController _controller;
-  final List<Tab> topTabs = <Tab>[
-    new Tab(text: 'Описание'),
-    new Tab(text: 'Спикеры')
-  ];
 
   @override
   void initState() {
@@ -33,6 +30,11 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    List<Tab> topTabs = <Tab>[
+      new Tab(text: '${AppLocalizations.of(context)?.description}'),
+      new Tab(text: '${AppLocalizations.of(context)?.speakers}')
+    ];
+
     bool trans = true;
     return Scaffold(
       appBar: AppBar(
@@ -128,7 +130,8 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
                     SvgPicture.asset("assets/icons/notifplus.svg",
                         color: kIconColor),
                     SizedBox(width: 20),
-                    Text("Напомнить за 10 минут", style: kContentTextStyle),
+                    Text("${AppLocalizations.of(context)?.notifym}",
+                        style: kContentTextStyle),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,

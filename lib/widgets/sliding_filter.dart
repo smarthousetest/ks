@@ -5,6 +5,7 @@ import 'package:kazansummit/cubit/cubit.dart';
 import 'package:kazansummit/cubit/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final PanelController panelController = PanelController();
 
@@ -49,7 +50,10 @@ class SlidingFilter extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16.0, bottom: 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Фильтры", style: kAppBarTextStyle)],
+                  children: [
+                    Text("${AppLocalizations.of(context)?.filter}",
+                        style: kAppBarTextStyle)
+                  ],
                 ),
               ),
               Padding(
@@ -60,7 +64,7 @@ class SlidingFilter extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Трансляция",
+                          "${AppLocalizations.of(context)?.livestream}",
                           style: kFilterTextStyle,
                         ),
                         Switch(
@@ -76,7 +80,7 @@ class SlidingFilter extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Отрасль события",
+                          "${AppLocalizations.of(context)?.topics}",
                           style: kFilterTextStyle,
                         )
                       ],
@@ -86,7 +90,7 @@ class SlidingFilter extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Формат встречи",
+                          "${AppLocalizations.of(context)?.formats}",
                           style: kFilterTextStyle,
                         )
                       ],
@@ -99,7 +103,7 @@ class SlidingFilter extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
                             child: Text(
-                              "Показать",
+                              "${AppLocalizations.of(context)?.show}",
                               style: TextStyle(fontSize: 16),
                             ),
                           )),
