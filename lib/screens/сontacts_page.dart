@@ -27,27 +27,24 @@ class ContactsPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 4),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Row(
-                  children: [
-                    SvgPicture.asset("assets/icons/phone.svg",
-                        color: kIconColor),
-                    SizedBox(width: 12),
-                    TextButton(
-                        onPressed: () {
-                          UrlLauncher.launch("tel://88435704001");
-                        },
-                        child: Text("+7 (843) 570-40-01",
-                            style: kContentTextStyle))
-                  ],
-                ),
+              Row(
+                children: [
+                  SvgPicture.asset("assets/icons/phone.svg", color: kIconColor),
+                  SizedBox(width: 12),
+                  TextButton(
+                      onPressed: () {
+                        UrlLauncher.launch("tel://88435704001");
+                      },
+                      child:
+                          Text("+7 (843) 570-40-01", style: kContentTextStyle))
+                ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 8),
                 child: Row(
                   children: [
                     SvgPicture.asset("assets/icons/printer.svg",
@@ -63,7 +60,7 @@ class ContactsPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 8),
                 child: Row(
                   children: [
                     SvgPicture.asset("assets/icons/mail.svg",
@@ -79,8 +76,9 @@ class ContactsPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 18),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SvgPicture.asset("assets/icons/location.svg",
                         color: kIconColor),

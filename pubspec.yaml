@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^6.0.18
   auto_size_text: ^3.0.0
   sliding_up_panel: ^2.0.0+1
+  circular_profile_avatar: ^2.0.5
 
 
   flutter_localizations:
@@ -100,6 +101,9 @@ flutter:
       - assets/icons/instagram.svg
       - assets/icons/tw.svg
       - assets/icons/X.svg
+      - assets/icons/left.svg
+      - assets/icons/alignleft.svg
+      - assets/icons/notifplus.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

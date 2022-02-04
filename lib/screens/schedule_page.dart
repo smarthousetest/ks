@@ -100,12 +100,17 @@ class _SchedulePageState extends State<SchedulePage>
         child: SafeArea(
           child: Column(
             children: [
-              ScheduleCard(
-                  time: "9:00-12:00",
-                  title: "По теме Казанские инновации и инвестиции в них",
-                  zal: "Зал Достоевский",
-                  trans: true,
-                  favourites: false),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/eventpage');
+                },
+                child: ScheduleCard(
+                    time: "9:00-12:00",
+                    title: "По теме Казанские инновации и инвестиции в них",
+                    zal: "Зал Достоевский",
+                    trans: true,
+                    favourites: false),
+              ),
               ScheduleCard(
                   time: "9:00-12:00",
                   title: "По теме Казанские инновации и инвестиции в них",

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
+import 'package:kazansummit/screens/event_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:kazansummit/screens/management.dart';
 import 'package:kazansummit/utils/constants.dart';
@@ -49,6 +50,7 @@ class _MyAppState extends State<MyApp> {
         ),
         routes: <String, WidgetBuilder>{
           '/contactpage': (BuildContext context) => ContactsPage(),
+          '/eventpage': (BuildContext context) => EventPage(),
         },
       ),
     );
