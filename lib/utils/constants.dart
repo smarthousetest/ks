@@ -21,7 +21,7 @@ Color kShadowColor = const Color(0xFF59377C7C);
 
 BoxDecoration kDecorationBox = BoxDecoration(
   color: Colors.white,
-  borderRadius: const BorderRadius.all(Radius.circular(10)),
+  borderRadius: const BorderRadius.all(Radius.circular(9)),
   boxShadow: [
     BoxShadow(
       color: kShadowColor.withOpacity(0.1),

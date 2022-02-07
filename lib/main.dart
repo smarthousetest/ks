@@ -7,6 +7,8 @@ import 'package:kazansummit/screens/event_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:kazansummit/screens/management.dart';
 import 'package:kazansummit/screens/news_page.dart';
+import 'package:kazansummit/screens/notification_page.dart';
+import 'package:kazansummit/screens/notification_page_open.dart';
 import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/cubit/cubit.dart';
@@ -55,6 +57,9 @@ class _MyAppState extends State<MyApp> {
           '/eventpage': (BuildContext context) => EventPage(),
           '/speakerpage': (BuildContext context) => SpeakerPage(),
           '/newspage': (BuildContext context) => NewsPage(),
+          '/notificationpage': (BuildContext context) => NotificationPage(),
+          '/notificationpageopen': (BuildContext context) =>
+              NotificationPageOpen(),
         },
       ),
     );

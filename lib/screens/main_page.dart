@@ -34,7 +34,10 @@ class MainPage extends StatelessWidget {
                                   SvgPicture.asset("assets/icons/search.svg")),
                           IconButton(
                               iconSize: 40,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, '/notificationpage');
+                              },
                               icon: SvgPicture.asset(
                                   "assets/icons/notification.svg"))
                         ],
@@ -153,6 +156,139 @@ class MainPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.nowair}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)?.learnmore}",
+                            style: TextStyle(
+                                color: Color(0xFFBDBDBD),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14),
+                          ),
+                          SizedBox(width: 5),
+                          SvgPicture.asset("assets/icons/right.svg")
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 16),
+                SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.width / 4,
+                          width: MediaQuery.of(context).size.width / 4,
+                          decoration: kDecorationBox.copyWith(
+                            color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/cat.png"),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.4),
+                                  BlendMode.dstATop),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/player.svg",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          height: MediaQuery.of(context).size.width / 4,
+                          width: MediaQuery.of(context).size.width / 4,
+                          decoration: kDecorationBox.copyWith(
+                            color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/cat.png"),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.4),
+                                  BlendMode.dstATop),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/player.svg",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          height: MediaQuery.of(context).size.width / 4,
+                          width: MediaQuery.of(context).size.width / 4,
+                          decoration: kDecorationBox.copyWith(
+                            color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/cat.png"),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.4),
+                                  BlendMode.dstATop),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/player.svg",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          height: MediaQuery.of(context).size.width / 4,
+                          width: MediaQuery.of(context).size.width / 4,
+                          decoration: kDecorationBox.copyWith(
+                            color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/cat.png"),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.4),
+                                  BlendMode.dstATop),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/player.svg",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          height: MediaQuery.of(context).size.width / 4,
+                          width: MediaQuery.of(context).size.width / 4,
+                          decoration: kDecorationBox.copyWith(
+                            color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/cat.png"),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.4),
+                                  BlendMode.dstATop),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/icons/player.svg",
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                      ],
+                    )),
                 SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
