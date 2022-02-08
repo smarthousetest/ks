@@ -32,14 +32,25 @@ class MainPage extends StatelessWidget {
                               onPressed: () {},
                               icon:
                                   SvgPicture.asset("assets/icons/search.svg")),
-                          IconButton(
-                              iconSize: 40,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/notificationpage');
-                              },
-                              icon: SvgPicture.asset(
-                                  "assets/icons/notification.svg"))
+                          Container(
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    iconSize: 40,
+                                    onPressed: () {},
+                                    icon: SvgPicture.asset(
+                                        "assets/icons/settings.svg")),
+                                IconButton(
+                                    iconSize: 40,
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/notificationpage');
+                                    },
+                                    icon: SvgPicture.asset(
+                                        "assets/icons/notification.svg")),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                       Center(
