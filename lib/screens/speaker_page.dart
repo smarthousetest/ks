@@ -62,15 +62,21 @@ class SpeakerPage extends StatelessWidget {
             child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16, right: 16, top: 10, bottom: 6),
-                    child: SpeakerCard(
-                        image:
-                            "https://i11.fotocdn.net/s121/812174e17c001a41/public_pin_l/2764195349.jpg",
-                        name: "Дмитрий Артюхов",
-                        firm: "ООО Татнефть",
-                        post: "Губернатор Ямало-Ненецкого автономного округа"),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/speakerpageopen');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16, right: 16, top: 10, bottom: 6),
+                      child: SpeakerCard(
+                          image:
+                              "https://i11.fotocdn.net/s121/812174e17c001a41/public_pin_l/2764195349.jpg",
+                          name: "Дмитрий Артюхов",
+                          firm: "ООО Татнефть",
+                          post:
+                              "Губернатор Ямало-Ненецкого автономного округа"),
+                    ),
                   );
                 })));
   }

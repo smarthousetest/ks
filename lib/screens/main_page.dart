@@ -163,7 +163,7 @@ class MainPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Text(
-                        "${AppLocalizations.of(context)?.nowair}",
+                        "${AppLocalizations.of(context)?.livestream}",
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -414,72 +414,63 @@ class MainPage extends StatelessWidget {
                         Container(
                           height: MediaQuery.of(context).size.width / 4,
                           width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/logom.png",
-                            fit: BoxFit.cover,
+                          decoration: kDecorationBox.copyWith(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://kazansummit.ru/upload/iblock/14a/Logo_%D0%90%D0%BA_%D0%91%D0%B0%D1%80%D1%81_%D0%91%D0%B0%D0%BD%D0%BA_%D0%B1%D0%B5%D0%BB%D1%8B%D0%B9_%D1%84%D0%BE%D0%BD.png"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Container(
                           height: MediaQuery.of(context).size.width / 4,
                           width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/cat.png",
-                            fit: BoxFit.cover,
+                          decoration: kDecorationBox.copyWith(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://kazansummit.ru/upload/resize_cache/iblock/feb/180_120_1/ulfzhn-image014_754x450C_55e.jpg"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Container(
                           height: MediaQuery.of(context).size.width / 4,
                           width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/logom.png",
-                            fit: BoxFit.cover,
+                          decoration: kDecorationBox.copyWith(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://kazansummit.ru/upload/resize_cache/iblock/669/180_120_1/Coat_of_Arms_of_Tatarstan_gerb.png"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Container(
                           height: MediaQuery.of(context).size.width / 4,
                           width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/cat.png",
-                            fit: BoxFit.cover,
+                          decoration: kDecorationBox.copyWith(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://kazansummit.ru/upload/resize_cache/iblock/cc2/180_120_1/invest_tatrstan.png"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Container(
                           height: MediaQuery.of(context).size.width / 4,
                           width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/logom.png",
-                            fit: BoxFit.cover,
+                          decoration: kDecorationBox.copyWith(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://kazansummit.ru/upload/resize_cache/iblock/4b8/180_120_1/tida.png"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
-                        Container(
-                          height: MediaQuery.of(context).size.width / 4,
-                          width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/cat.png",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Container(
-                          height: MediaQuery.of(context).size.width / 4,
-                          width: MediaQuery.of(context).size.width / 4,
-                          decoration: kDecorationBox,
-                          child: Image.asset(
-                            "assets/images/logom.png",
-                            fit: BoxFit.cover,
-                          ),
-                        )
                       ],
                     )),
                 SizedBox(height: 16),

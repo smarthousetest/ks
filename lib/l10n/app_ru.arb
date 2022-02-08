@@ -33,5 +33,10 @@
 "nowair":"Сейчас в эфире",
 "notifications":"Уведомления",
 "allthisnotifications":"На этой странице будут собраны все уведомления.",
-"nonotifications":"Нет уведомлений"
+"nonotifications":"Нет уведомлений",
+"biography":"Биография",
+"sessions":"Сессии",
+"jobtitle":"Должность",
+"organization":"Организация",
+"description":"Описание"
 }

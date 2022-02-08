@@ -42,3 +42,6 @@ TextStyle kFilterTextStyle = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 16,
     fontStyle: FontStyle.normal);
+
+TextStyle kSpeckerTextStyle = const TextStyle(
+    color: Color(0xFF3B8992), fontWeight: FontWeight.w700, fontSize: 16);
