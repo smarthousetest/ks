@@ -37,6 +37,9 @@ TextStyle kAppBarTextStyle = const TextStyle(
 TextStyle kContentTextStyle = const TextStyle(
     color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16);
 
+TextStyle kTransporgGreyTextStyle = const TextStyle(
+    color: Color(0xFF828282), fontWeight: FontWeight.w400, fontSize: 14);
+
 TextStyle kFilterTextStyle = const TextStyle(
     color: Color(0xFF212121),
     fontWeight: FontWeight.w400,

@@ -41,6 +41,8 @@
 "organizers":"Organizers",
 "generalpartner":"General Partner",
 "officialpartner":"Official Partner",
+"from":"From",
+"to":"to",
 "show":"Show",
     "hello": "Hello {username}",
     "@hello": {

@@ -107,6 +107,12 @@ flutter:
       - assets/icons/inputsearch.svg
       - assets/icons/player.svg
       - assets/icons/nonotifications.svg
+      - assets/icons/likes.svg
+      - assets/icons/heartminus.svg
+      - assets/icons/heartplus.svg
+      - assets/icons/linetrans.svg
+      - assets/icons/strelkiii.svg
+      - assets/icons/ellipse.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

@@ -41,5 +41,7 @@
 "description":"Описание",
 "organizers":"Организатор",
 "generalpartner":"Генеральный партнер",
-"officialpartner":"Официальный партнер"
+"officialpartner":"Официальный партнер",
+"from":"От",
+"to":"До"
 }
