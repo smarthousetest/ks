@@ -38,6 +38,9 @@
 "jobtitle":"Job title",
 "organization":"Organization",
 "description":"Description",
+"organizers":"Organizers",
+"generalpartner":"General Partner",
+"officialpartner":"Official Partner",
 "show":"Show",
     "hello": "Hello {username}",
     "@hello": {

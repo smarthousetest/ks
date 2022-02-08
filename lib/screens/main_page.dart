@@ -376,35 +376,40 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        "${AppLocalizations.of(context)?.partners}",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/partnerspage');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(
+                          "${AppLocalizations.of(context)?.partners}",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          Text(
-                            "${AppLocalizations.of(context)?.learnmore}",
-                            style: TextStyle(
-                                color: Color(0xFFBDBDBD),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14),
-                          ),
-                          SizedBox(width: 5),
-                          SvgPicture.asset("assets/icons/right.svg")
-                        ],
-                      ),
-                    )
-                  ],
+                      Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              "${AppLocalizations.of(context)?.learnmore}",
+                              style: TextStyle(
+                                  color: Color(0xFFBDBDBD),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(width: 5),
+                            SvgPicture.asset("assets/icons/right.svg")
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(height: 16),
                 SingleChildScrollView(

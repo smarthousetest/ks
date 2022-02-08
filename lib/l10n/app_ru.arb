@@ -38,5 +38,8 @@
 "sessions":"Сессии",
 "jobtitle":"Должность",
 "organization":"Организация",
-"description":"Описание"
+"description":"Описание",
+"organizers":"Организатор",
+"generalpartner":"Генеральный партнер",
+"officialpartner":"Официальный партнер"
 }

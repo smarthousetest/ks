@@ -9,6 +9,7 @@ import 'package:kazansummit/screens/management.dart';
 import 'package:kazansummit/screens/news_page.dart';
 import 'package:kazansummit/screens/notification_page.dart';
 import 'package:kazansummit/screens/notification_page_open.dart';
+import 'package:kazansummit/screens/partners_page.dart';
 import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/screens/speaker_page_open.dart';
 import 'package:kazansummit/utils/constants.dart';
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
           '/notificationpageopen': (BuildContext context) =>
               NotificationPageOpen(),
           '/speakerpageopen': (BuildContext context) => SpeakerPageOpen(),
+          '/partnerspage': (BuildContext context) => PartnersPage(),
         },
       ),
     );
