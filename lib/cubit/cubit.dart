@@ -1,11 +1,30 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavigationControllerSelect extends Cubit<int> {
   BottomNavigationControllerSelect() : super(0);
 
   void select(int index) {
     emit(index);
+  }
+}
+
+class LangCubit extends Cubit<Locale> {
+  LangCubit() : super(Locale('en'));
+
+  Locale? _locale;
+
+  Locale? get locale => _locale;
+
+  void setLocale(Locale locale) {
+    emit(locale);
+  }
+
+  void clearLocale() {
+    emit(Locale('en'));
   }
 }
 

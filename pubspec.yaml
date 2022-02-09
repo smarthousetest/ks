@@ -115,6 +115,7 @@ flutter:
       - assets/icons/ellipse.svg
       - assets/icons/settings.svg
       - assets/icons/chat.svg
+      - assets/icons/langcheck.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

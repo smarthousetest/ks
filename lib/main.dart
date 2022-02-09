@@ -11,6 +11,7 @@ import 'package:kazansummit/screens/news_page.dart';
 import 'package:kazansummit/screens/notification_page.dart';
 import 'package:kazansummit/screens/notification_page_open.dart';
 import 'package:kazansummit/screens/partners_page.dart';
+import 'package:kazansummit/screens/settings_page.dart';
 import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/screens/speaker_page_open.dart';
 import 'package:kazansummit/screens/transport_page.dart';
@@ -40,36 +41,40 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<BottomNavigationControllerSelect>(
-            create: (context) => sl<BottomNavigationControllerSelect>()),
-        BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'KS',
-        theme: theme(),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: Scaffold(
-          body: Stack(
-            children: [Management(), SlidingFilter()],
+        providers: [
+          BlocProvider<BottomNavigationControllerSelect>(
+              create: (context) => sl<BottomNavigationControllerSelect>()),
+          BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
+          BlocProvider<LangCubit>(create: (context) => sl<LangCubit>()),
+        ],
+        child: BlocBuilder<LangCubit, Locale>(
+          builder: (context, locale) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'KS',
+            theme: theme(),
+            locale: locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Scaffold(
+              body: Stack(
+                children: [Management(), SlidingFilter()],
+              ),
+            ),
+            routes: <String, WidgetBuilder>{
+              '/contactpage': (BuildContext context) => ContactsPage(),
+              '/eventpage': (BuildContext context) => EventPage(),
+              '/speakerpage': (BuildContext context) => SpeakerPage(),
+              '/newspage': (BuildContext context) => NewsPage(),
+              '/notificationpage': (BuildContext context) => NotificationPage(),
+              '/notificationpageopen': (BuildContext context) =>
+                  NotificationPageOpen(),
+              '/speakerpageopen': (BuildContext context) => SpeakerPageOpen(),
+              '/partnerspage': (BuildContext context) => PartnersPage(),
+              '/transportpage': (BuildContext context) => TransportPage(),
+              '/feedbackpage': (BuildContext context) => FeedbackPage(),
+              '/settingsPage': (BuildContext context) => SettingsPage(),
+            },
           ),
-        ),
-        routes: <String, WidgetBuilder>{
-          '/contactpage': (BuildContext context) => ContactsPage(),
-          '/eventpage': (BuildContext context) => EventPage(),
-          '/speakerpage': (BuildContext context) => SpeakerPage(),
-          '/newspage': (BuildContext context) => NewsPage(),
-          '/notificationpage': (BuildContext context) => NotificationPage(),
-          '/notificationpageopen': (BuildContext context) =>
-              NotificationPageOpen(),
-          '/speakerpageopen': (BuildContext context) => SpeakerPageOpen(),
-          '/partnerspage': (BuildContext context) => PartnersPage(),
-          '/transportpage': (BuildContext context) => TransportPage(),
-          '/feedbackpage': (BuildContext context) => FeedbackPage(),
-        },
-      ),
-    );
+        ));
   }
 }

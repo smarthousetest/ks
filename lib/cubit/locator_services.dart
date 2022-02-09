@@ -6,4 +6,5 @@ final sl = GetIt.instance;
 Future<void> init() async {
   sl.registerFactory(() => BottomNavigationControllerSelect());
   sl.registerFactory(() => FilterCubit());
+  sl.registerFactory(() => LangCubit());
 }

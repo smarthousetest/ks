@@ -37,7 +37,10 @@ class MainPage extends StatelessWidget {
                               children: [
                                 IconButton(
                                     iconSize: 40,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/settingsPage');
+                                    },
                                     icon: SvgPicture.asset(
                                         "assets/icons/settings.svg")),
                                 IconButton(

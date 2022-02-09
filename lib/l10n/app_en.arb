@@ -49,6 +49,9 @@
 "gobacktomain":"Go back to main",
 "thanksforthefeedback":"Thanks for the feedback. We will answer you soon",
 "thanks":"Thanks!",
+"settings":"Settings",
+"pushnotifications":"Push-notifications",
+"nllanguage":"Language",
 "show":"Show",
     "hello": "Hello {username}",
     "@hello": {
