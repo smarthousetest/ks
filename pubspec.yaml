@@ -114,6 +114,7 @@ flutter:
       - assets/icons/strelkiii.svg
       - assets/icons/ellipse.svg
       - assets/icons/settings.svg
+      - assets/icons/chat.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

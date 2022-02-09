@@ -43,6 +43,12 @@
 "officialpartner":"Official Partner",
 "from":"From",
 "to":"to",
+"subject":"Subject",
+"yourcomment":"Your comment",
+"send":"Send",
+"gobacktomain":"Go back to main",
+"thanksforthefeedback":"Thanks for the feedback. We will answer you soon",
+"thanks":"Thanks!",
 "show":"Show",
     "hello": "Hello {username}",
     "@hello": {

@@ -106,7 +106,9 @@ class ContactsPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/feedbackpage');
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: Text(

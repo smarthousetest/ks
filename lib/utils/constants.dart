@@ -48,3 +48,13 @@ TextStyle kFilterTextStyle = const TextStyle(
 
 TextStyle kSpeckerTextStyle = const TextStyle(
     color: Color(0xFF3B8992), fontWeight: FontWeight.w700, fontSize: 16);
+
+InputDecoration kinputDecorationDesign = InputDecoration(
+    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1.0),
+        borderRadius: BorderRadius.all(Radius.circular(8))),
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF008870), width: 1.0),
+        borderRadius: BorderRadius.all(Radius.circular(8))));
