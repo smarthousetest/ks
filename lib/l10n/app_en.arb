@@ -52,6 +52,11 @@
 "settings":"Settings",
 "pushnotifications":"Push-notifications",
 "nllanguage":"Language",
+"myapplications":"My applications",
+"approved":"Approved",
+"pay":"Pay",
+"pending":"Pending",
+"rejected":"Rejected",
 "show":"Show",
     "hello": "Hello {username}",
     "@hello": {

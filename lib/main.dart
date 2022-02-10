@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
+import 'package:kazansummit/screens/claim_page.dart';
 import 'package:kazansummit/screens/event_page.dart';
 import 'package:kazansummit/screens/feedback_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
@@ -11,6 +12,7 @@ import 'package:kazansummit/screens/news_page.dart';
 import 'package:kazansummit/screens/notification_page.dart';
 import 'package:kazansummit/screens/notification_page_open.dart';
 import 'package:kazansummit/screens/partners_page.dart';
+import 'package:kazansummit/screens/profile_page.dart';
 import 'package:kazansummit/screens/settings_page.dart';
 import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/screens/speaker_page_open.dart';
@@ -73,6 +75,7 @@ class _MyAppState extends State<MyApp> {
               '/transportpage': (BuildContext context) => TransportPage(),
               '/feedbackpage': (BuildContext context) => FeedbackPage(),
               '/settingsPage': (BuildContext context) => SettingsPage(),
+              '/claimpage': (BuildContext context) => ClaimPage(),
             },
           ),
         ));

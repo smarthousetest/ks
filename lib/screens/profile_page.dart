@@ -1,0 +1,136 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kazansummit/utils/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kazansummit/widgets/profile_card.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kBacColor,
+        iconTheme: IconThemeData(color: kIconColor),
+        elevation: 0,
+        centerTitle: true,
+        title: Text("${AppLocalizations.of(context)?.myapplications}",
+            style: kAppBarTextStyle),
+        leading: IconButton(
+            iconSize: 40,
+            onPressed: () {},
+            icon: SvgPicture.asset("assets/icons/search.svg")),
+        actions: [
+          IconButton(
+              iconSize: 40,
+              onPressed: () {},
+              icon: SvgPicture.asset("assets/icons/settings.svg")),
+          IconButton(
+              iconSize: 40,
+              onPressed: () {},
+              icon: SvgPicture.asset("assets/icons/notification.svg"))
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/claimpage');
+                },
+                child: ProfileCard(
+                    status: "one",
+                    title: "KazanSummit2022",
+                    type: "Участник",
+                    name: "Terenteva Tatyana",
+                    prof: "web-developer, maksat.pro",
+                    paket: "Пакет «Стандарт»",
+                    buttonvisible: true,
+                    buttonred: true),
+              ),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "two",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: true,
+                  buttonred: true),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "three",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: true,
+                  buttonred: false),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "three",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: true,
+                  buttonred: false),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "two",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: false,
+                  buttonred: true),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "one",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: false,
+                  buttonred: true),
+              SizedBox(height: 16),
+              ProfileCard(
+                  status: "two",
+                  title: "KazanSummit2022",
+                  type: "Участник",
+                  name: "Terenteva Tatyana",
+                  prof: "web-developer, maksat.pro",
+                  paket: "Пакет «Стандарт»",
+                  buttonvisible: true,
+                  buttonred: true),
+              SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/feedbackpage');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.feedback}",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )),
+              ),
+              SizedBox(height: 16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

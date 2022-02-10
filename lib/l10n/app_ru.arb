@@ -52,5 +52,10 @@
 "thanks":"Спасибо!",
 "settings":"Настройки",
 "pushnotifications":"Пуш-уведомления",
-"nllanguage":"Язык"
+"nllanguage":"Язык",
+"myapplications":"Мои заявки",
+"approved":"Одобрено",
+"pay":"Оплатить",
+"pending":"На рассмотрении",
+"rejected":"Отклонено"
 }
