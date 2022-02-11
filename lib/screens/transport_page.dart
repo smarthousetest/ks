@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kazansummit/widgets/dropdown_input.dart';
 import 'package:kazansummit/widgets/transport_card.dart';
 
 class TransportPage extends StatefulWidget {
@@ -57,43 +58,14 @@ class _TransportPageState extends State<TransportPage> {
                               SvgPicture.asset("assets/icons/ellipse.svg"),
                               SizedBox(width: 10),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width - 160,
-                                child: Form(
-                                    child: DropdownButtonFormField<String>(
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        "${AppLocalizations.of(context)?.from}",
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xFFADB3BD),
-                                            width: 1.0),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xFF008870),
-                                            width: 1.0),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                  ),
-                                  items: fromlist.map((from) {
-                                    return DropdownMenuItem(
-                                      child: Text(from),
-                                      value: from,
-                                    );
-                                  }).toList(),
-                                  onChanged: (data) {
-                                    setState(() {
-                                      selectetfrom = data;
-                                    });
-                                  },
-                                  value: selectetfrom,
-                                )),
-                              )
+                                  width:
+                                      MediaQuery.of(context).size.width - 160,
+                                  child: Form(
+                                      child: DropdownInput(
+                                          text:
+                                              "${AppLocalizations.of(context)?.from}",
+                                          list: fromlist,
+                                          selectedvalue: selectetfrom)))
                             ],
                           ),
                           SizedBox(height: 16),
@@ -108,40 +80,11 @@ class _TransportPageState extends State<TransportPage> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width - 160,
                                 child: Form(
-                                    child: DropdownButtonFormField<String>(
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        "${AppLocalizations.of(context)?.to}",
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xFFADB3BD),
-                                            width: 1.0),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xFF008870),
-                                            width: 1.0),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                  ),
-                                  items: tolist.map((from) {
-                                    return DropdownMenuItem(
-                                      child: Text(from),
-                                      value: from,
-                                    );
-                                  }).toList(),
-                                  onChanged: (data2) {
-                                    setState(() {
-                                      selectetto = data2;
-                                    });
-                                  },
-                                  value: selectetto,
-                                )),
+                                    child: DropdownInput(
+                                        text:
+                                            "${AppLocalizations.of(context)?.to}",
+                                        list: tolist,
+                                        selectedvalue: selectetto)),
                               )
                             ],
                           )

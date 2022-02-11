@@ -39,6 +39,7 @@ dependencies:
   auto_size_text: ^3.0.0
   sliding_up_panel: ^2.0.0+1
   circular_profile_avatar: ^2.0.5
+  dotted_border: ^2.0.0+2
 
 
   flutter_localizations:
@@ -118,6 +119,11 @@ flutter:
       - assets/icons/langcheck.svg
       - assets/icons/b2b.svg
       - assets/icons/golos.svg
+      - assets/icons/editp.svg
+      - assets/icons/link.svg
+      - assets/icons/camera.svg
+      - assets/icons/clock.svg
+      - assets/icons/fileplus.svg
       - assets/images/logoen.svg
       - assets/images/map.png
       - assets/images/logom.png

@@ -3,6 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/speaker_card.dart';
+import 'package:kazansummit/widgets/text_input.dart';
+
+final searchTextFieldControler = TextEditingController();
 
 class SpeakerPage extends StatelessWidget {
   const SpeakerPage({Key? key}) : super(key: key);
@@ -26,36 +29,15 @@ class SpeakerPage extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(60),
             child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 6),
-              child: TextFormField(
-                //  readOnly: true,
-                decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  hintText: '${AppLocalizations.of(context)?.search}',
-                  prefixIcon: Icon(
+                padding:
+                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 6),
+                child: TextInput(
+                  text: "${AppLocalizations.of(context)?.search}",
+                  textFieldControler: searchTextFieldControler,
+                  icon: Icon(
                     Icons.search,
                   ),
-                  hintStyle: TextStyle(
-                    fontSize: 14.0,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w300,
-                    color: Color(0xFF828282),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFFADB3BD), width: 1.0),
-                      borderRadius: BorderRadius.all(Radius.circular(9))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFFADB3BD), width: 1.0),
-                      borderRadius: BorderRadius.all(Radius.circular(9))),
-                ),
-              ),
-            ),
+                )),
           ),
         ),
         body: SafeArea(

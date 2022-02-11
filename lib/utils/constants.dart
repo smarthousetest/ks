@@ -58,3 +58,21 @@ InputDecoration kinputDecorationDesign = InputDecoration(
     focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Color(0xFF008870), width: 1.0),
         borderRadius: BorderRadius.all(Radius.circular(8))));
+
+TextStyle kzayavgreenTextStyle = const TextStyle(
+    color: Color(0xFF3B8992),
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    fontStyle: FontStyle.normal);
+
+TextStyle kzayavblackTextStyle = const TextStyle(
+    color: Color(0xFF000000),
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    fontStyle: FontStyle.normal);
+
+TextStyle kzayavnoneTextStyle = const TextStyle(
+    color: Color(0xFFBDBDBD),
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    fontStyle: FontStyle.normal);

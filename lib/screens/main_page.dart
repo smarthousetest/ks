@@ -73,7 +73,9 @@ class MainPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/evantputpage');
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
                         child: Text(

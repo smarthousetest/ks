@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
+import 'package:kazansummit/screens/claim_edit_page.dart';
 import 'package:kazansummit/screens/claim_page.dart';
 import 'package:kazansummit/screens/event_page.dart';
+import 'package:kazansummit/screens/event_page_put.dart';
 import 'package:kazansummit/screens/feedback_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:kazansummit/screens/management.dart';
@@ -76,6 +78,8 @@ class _MyAppState extends State<MyApp> {
               '/feedbackpage': (BuildContext context) => FeedbackPage(),
               '/settingsPage': (BuildContext context) => SettingsPage(),
               '/claimpage': (BuildContext context) => ClaimPage(),
+              '/claimeditpage': (BuildContext context) => ClaimEditPage(),
+              '/evantputpage': (BuildContext context) => EventPagePut(),
             },
           ),
         ));
