@@ -60,7 +60,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
           iconTheme: IconThemeData(color: kIconColor),
           elevation: 0,
           centerTitle: true,
-          title: Text("${AppLocalizations.of(context)?.contacts}",
+          title: Text("${AppLocalizations.of(context)?.application}",
               style: kAppBarTextStyle),
           actions: [
             IconButton(
@@ -490,7 +490,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
                         child: Text(
-                          "${AppLocalizations.of(context)?.feedback}",
+                          "${AppLocalizations.of(context)?.savechanges}",
                           style: TextStyle(fontSize: 16),
                         ),
                       )),

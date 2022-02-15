@@ -6,10 +6,44 @@ import 'package:kazansummit/cubit/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 final PanelController panelController = PanelController();
 
-class SlidingFilter extends StatelessWidget {
+class Animal {
+  final int id;
+  final String name;
+
+  Animal({
+    required this.id,
+    required this.name,
+  });
+}
+
+List<Animal> _animals = [
+  Animal(id: 1, name: "Lion"),
+  Animal(id: 2, name: "Flamingo"),
+  Animal(id: 3, name: "Hippo"),
+  Animal(id: 4, name: "Horse"),
+  Animal(id: 5, name: "Tiger"),
+  Animal(id: 6, name: "Penguin"),
+  Animal(id: 7, name: "Spider"),
+  Animal(id: 8, name: "Snake"),
+  Animal(id: 9, name: "Bear")
+];
+
+var _items = _animals
+    .map((animal) => MultiSelectItem<Animal>(animal, animal.name))
+    .toList();
+
+List<dynamic>? selectedAnimals = [];
+
+class SlidingFilter extends StatefulWidget {
+  @override
+  State<SlidingFilter> createState() => _SlidingFilterState();
+}
+
+class _SlidingFilterState extends State<SlidingFilter> {
   @override
   Widget build(BuildContext context) {
     context.read<FilterCubit>().stream.listen((state) {
@@ -84,6 +118,35 @@ class SlidingFilter extends StatelessWidget {
                           style: kFilterTextStyle,
                         )
                       ],
+                    ),
+                    MultiSelectChipField<Animal?>(
+                      items: _items,
+                      scroll: false,
+                      showHeader: false,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(0)),
+                        border: Border.all(
+                          color: kBacColor,
+                          width: 0,
+                        ),
+                      ),
+                      chipShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(9))),
+                      chipColor: Color(0xFFEFEFEF),
+                      textStyle: TextStyle(
+                          color: Color(0xFF828282),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14),
+                      selectedTextStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14),
+                      selectedChipColor: kTextGreenColor,
+                      onTap: (values) {
+                        setState(() {
+                          selectedAnimals = values;
+                        });
+                      },
                     ),
                     SizedBox(height: 25),
                     Row(
