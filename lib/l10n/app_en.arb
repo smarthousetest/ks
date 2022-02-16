@@ -78,6 +78,9 @@
 "putzzz":"Submit an application",
 "show":"Show",
 "savechanges":"Save changes",
+"show":"Show",
+"login":"Log in",
+"registration":"Registration",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

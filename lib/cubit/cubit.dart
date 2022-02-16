@@ -41,3 +41,17 @@ class FilterCubit extends Cubit<FilterState> {
     emit(FilterClosedState());
   }
 }
+
+class SlidingAutgCubit extends Cubit<SlidingAuthState> {
+  SlidingAutgCubit() : super(SlidingAuthClosedState());
+
+  Future<void> open() async {
+    if (state is SlidingAuthOpenState) emit(SlidingAuthClosedState());
+    emit(SlidingAuthOpenState());
+  }
+
+  Future<void> hide() async {
+    if (state is SlidingAuthClosedState) return;
+    emit(SlidingAuthClosedState());
+  }
+}

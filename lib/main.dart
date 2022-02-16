@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kazansummit/cubit/auth_cubit.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/claim_edit_page.dart';
@@ -21,6 +22,7 @@ import 'package:kazansummit/screens/speaker_page_open.dart';
 import 'package:kazansummit/screens/transport_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/widgets/sliding_auth.dart';
 import 'package:kazansummit/widgets/sliding_filter.dart';
 import 'utils/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,6 +33,7 @@ void main() async {
     statusBarColor: kPrimaryColor,
     statusBarIconBrightness: Brightness.light,
   ));
+  WidgetsFlutterBinding.ensureInitialized();
   await servic.init();
   runApp(const MyApp());
 }
@@ -50,6 +53,10 @@ class _MyAppState extends State<MyApp> {
               create: (context) => sl<BottomNavigationControllerSelect>()),
           BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
           BlocProvider<LangCubit>(create: (context) => sl<LangCubit>()),
+          BlocProvider<SlidingAutgCubit>(
+              create: (context) => sl<SlidingAutgCubit>()),
+          BlocProvider<AuthCubit>(
+              create: (context) => sl<AuthCubit>()..check()),
         ],
         child: BlocBuilder<LangCubit, Locale>(
           builder: (context, locale) => MaterialApp(
@@ -61,7 +68,7 @@ class _MyAppState extends State<MyApp> {
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
               body: Stack(
-                children: [Management(), SlidingFilter()],
+                children: [Management(), SlidingFilter(), SlidingAuth()],
               ),
             ),
             routes: <String, WidgetBuilder>{

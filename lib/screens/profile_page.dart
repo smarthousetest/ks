@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kazansummit/cubit/cubit.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/profile_card.dart';
@@ -52,15 +54,22 @@ class ProfilePage extends StatelessWidget {
                     buttonred: true),
               ),
               SizedBox(height: 16),
-              ProfileCard(
-                  status: "two",
-                  title: "KazanSummit2022",
-                  type: "Участник",
-                  name: "Terenteva Tatyana",
-                  prof: "web-developer, maksat.pro",
-                  paket: "Пакет «Стандарт»",
-                  buttonvisible: true,
-                  buttonred: true),
+              GestureDetector(
+                onTap: () {
+                  SlidingAutgCubit authslCubit =
+                      context.read<SlidingAutgCubit>();
+                  authslCubit.open();
+                },
+                child: ProfileCard(
+                    status: "two",
+                    title: "KazanSummit2022",
+                    type: "Участник",
+                    name: "Terenteva Tatyana",
+                    prof: "web-developer, maksat.pro",
+                    paket: "Пакет «Стандарт»",
+                    buttonvisible: true,
+                    buttonred: true),
+              ),
               SizedBox(height: 16),
               ProfileCard(
                   status: "three",
