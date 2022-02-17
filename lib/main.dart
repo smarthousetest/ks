@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kazansummit/cubit/auth_cubit.dart';
+import 'package:kazansummit/cubit/auth/auth_cubit.dart';
+import 'package:kazansummit/cubit/auth/auth_state.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/claim_edit_page.dart';
@@ -21,7 +22,7 @@ import 'package:kazansummit/screens/speaker_page.dart';
 import 'package:kazansummit/screens/speaker_page_open.dart';
 import 'package:kazansummit/screens/transport_page.dart';
 import 'package:kazansummit/utils/constants.dart';
-import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/widgets/sliding_auth.dart';
 import 'package:kazansummit/widgets/sliding_filter.dart';
 import 'utils/theme.dart';
@@ -52,11 +53,14 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<BottomNavigationControllerSelect>(
               create: (context) => sl<BottomNavigationControllerSelect>()),
           BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
-          BlocProvider<LangCubit>(create: (context) => sl<LangCubit>()),
+          BlocProvider<LangCubit>(
+              create: (context) => sl<LangCubit>()..getlocale()),
           BlocProvider<SlidingAutgCubit>(
               create: (context) => sl<SlidingAutgCubit>()),
           BlocProvider<AuthCubit>(
               create: (context) => sl<AuthCubit>()..check()),
+          BlocProvider<ProfilePageCubit>(
+              create: (context) => sl<ProfilePageCubit>()..fetchProfilePage()),
         ],
         child: BlocBuilder<LangCubit, Locale>(
           builder: (context, locale) => MaterialApp(
@@ -66,11 +70,16 @@ class _MyAppState extends State<MyApp> {
             locale: locale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-              body: Stack(
-                children: [Management(), SlidingFilter(), SlidingAuth()],
-              ),
-            ),
+            home: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, startstate) => Scaffold(
+                      body: Stack(
+                        children: [
+                          Management(),
+                          SlidingFilter(),
+                          SlidingAuth()
+                        ],
+                      ),
+                    )),
             routes: <String, WidgetBuilder>{
               '/contactpage': (BuildContext context) => ContactsPage(),
               '/eventpage': (BuildContext context) => EventPage(),

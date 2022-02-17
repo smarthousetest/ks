@@ -496,6 +496,24 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                       )),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          "${AppLocalizations.of(context)?.deleteapplication}",
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xffB03A35)),
+                        ),
+                      )),
+                ),
+              ),
             ],
           ),
         ));

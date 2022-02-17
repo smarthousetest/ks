@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/widgets/schedule_card.dart';
 import 'dart:math' as math;

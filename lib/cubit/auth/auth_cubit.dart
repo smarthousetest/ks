@@ -1,14 +1,15 @@
 import 'dart:convert';
 
 import 'package:kazansummit/cubit/locator_services.dart';
-import 'package:kazansummit/cubit/app_auth.dart';
-import 'package:kazansummit/cubit/auth_state.dart';
+import 'package:kazansummit/cubit/auth/app_auth.dart';
+import 'package:kazansummit/cubit/auth/auth_state.dart';
 
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   //final SubscriptionRepository subscriptionRepository;
@@ -77,6 +78,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logOut() async {
+    print("object");
     final idTokenHint = await sharedPreferences.getString(idTokenKey);
 
     print("idTokenHint: $idTokenHint");
@@ -103,6 +105,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signIn() async {
+    print("signIn");
     //  if (state is InProcessState) return;
 
     final currentState = state;
@@ -146,6 +149,10 @@ class AuthCubit extends Cubit<AuthState> {
           result.accessTokenExpirationDateTime);
       print("accessToken = ${result.accessToken}");
       print("idToken = ${result.idToken}");
+
+      String yourToken = "${result.accessToken}";
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
+      print(decodedToken);
     }
 
     emit(LoginedState());
@@ -176,6 +183,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> saveTokens(String? accessToken, String? refreshToken,
       String? idToken, DateTime? accessTokenExpirationDateTime) async {
     try {
+      print("refreshToken $refreshToken");
       await secureStorage.write(key: refreshTokenKey, value: refreshToken);
       await secureStorage.write(key: accessTokenKey, value: accessToken);
       //   await secureStorage.write(key: idTokenKey, value: idToken);

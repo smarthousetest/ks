@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kazansummit/cubit/cubit.dart';
-import 'package:kazansummit/cubit/state.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
+import 'package:kazansummit/cubit/all/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

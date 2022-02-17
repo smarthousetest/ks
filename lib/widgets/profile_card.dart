@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileCard extends StatelessWidget {
   String status;
+  String statusname;
   String title;
   String type;
   String name;
@@ -14,6 +15,7 @@ class ProfileCard extends StatelessWidget {
 
   ProfileCard({
     required this.status,
+    required this.statusname,
     required this.title,
     required this.type,
     required this.name,
@@ -41,22 +43,22 @@ class ProfileCard extends StatelessWidget {
       buttontextcolor = Color(0xFF828282);
     }
 
-    if (status == "one") {
+    if (status == "Success") {
       textverhcolor = Color(0xFF3B8992);
       panelverhcolor = Color(0xFFE2EAEB);
-      paneltext = AppLocalizations.of(context)?.approved;
+      paneltext = statusname;
     }
 
-    if (status == "two") {
+    if (status == "Moderate") {
       textverhcolor = Color(0xFFF8AC1A);
       panelverhcolor = Color(0xFFFFF8E9);
-      paneltext = AppLocalizations.of(context)?.pending;
+      paneltext = statusname;
     }
 
-    if (status == "three") {
+    if (status == "Cancel") {
       textverhcolor = Color(0xFFB03A35);
       panelverhcolor = Color(0xFFFFF5F5);
-      paneltext = AppLocalizations.of(context)?.rejected;
+      paneltext = statusname;
     }
 
     return Container(

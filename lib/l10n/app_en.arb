@@ -81,6 +81,9 @@
 "show":"Show",
 "login":"Log in",
 "registration":"Registration",
+"togetaccess":"To get access to this section, please log in or register",
+"logout":"Log out",
+"deleteapplication":"Delete application",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/main_page.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';

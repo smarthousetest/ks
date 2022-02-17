@@ -13,7 +13,7 @@ class AppAuth {
     // 'profile',
     // 'email',
     // 'roles',
-    //'offline_access',
+    'offline_access',
     'demo_api'
   ];
 

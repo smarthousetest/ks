@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kazansummit/cubit/cubit.dart';
+import 'package:kazansummit/cubit/auth/auth_cubit.dart';
+import 'package:kazansummit/cubit/auth/auth_state.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kazansummit/widgets/auth_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -94,6 +98,35 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 40),
+            BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+              if (state is LoginedState) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFFB03A35),
+                      ),
+                      onPressed: () {
+                        context.read<AuthCubit>().logOut();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          "${AppLocalizations.of(context)?.logout}",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      )),
+                );
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AuthWidget(),
+                  ],
+                );
+              }
+            })
           ],
         ),
       ),
