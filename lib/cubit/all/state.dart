@@ -22,3 +22,14 @@ class ProfilePageLoadedState extends ProfilePageState {
 }
 
 class ProfilePageErrorState extends ProfilePageState {}
+
+abstract class ClaimPageState {}
+
+class ClaimPageLoadingState extends ClaimPageState {}
+
+class ClaimPageLoadedState extends ClaimPageState {
+  dynamic? loadedClaimPage;
+  ClaimPageLoadedState({this.loadedClaimPage}) {}
+}
+
+class ClaimPageErrorState extends ClaimPageState {}

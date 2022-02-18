@@ -39,8 +39,6 @@ class ProfilePage extends StatelessWidget {
         ],
       ),
       body: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-        print(state);
-
         if (state is LoginedState) {
           return BlocBuilder<ProfilePageCubit, ProfilePageState>(
               builder: (context, state) {
@@ -54,29 +52,33 @@ class ProfilePage extends StatelessWidget {
                       itemCount: state.loadedProfilePage.items?.length + 1,
                       itemBuilder: (context, index) {
                         if (index != state.loadedProfilePage.items?.length) {
-                          print(state.loadedProfilePage.items[index]
-                              .applicationStatus.code);
                           return Padding(
                             padding: const EdgeInsets.only(left: 24, right: 24),
                             child: Column(
                               children: [
                                 SizedBox(height: 24),
-                                ProfileCard(
-                                    status: state.loadedProfilePage.items[index]
-                                        .applicationStatus.code,
-                                    statusname: state.loadedProfilePage
-                                        .items[index].applicationStatus.value,
-                                    title: state.loadedProfilePage.items[index]
-                                        .eventTitle,
-                                    type: state.loadedProfilePage.items[index]
-                                        .templateName,
-                                    name: state.loadedProfilePage.items[index]
-                                        .informationAboutPerson,
-                                    prof: "web-developer, maksat.pro",
-                                    paket: state.loadedProfilePage.items[index]
-                                        .packageName,
-                                    buttonvisible: true,
-                                    buttonred: true),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/claimpage');
+                                  },
+                                  child: ProfileCard(
+                                      status: state.loadedProfilePage
+                                          .items[index].applicationStatus.code,
+                                      statusname: state.loadedProfilePage
+                                          .items[index].applicationStatus.value,
+                                      title: state.loadedProfilePage
+                                          .items[index].eventTitle,
+                                      type: state.loadedProfilePage.items[index]
+                                          .templateName,
+                                      name: state.loadedProfilePage.items[index]
+                                          .fullNameEn,
+                                      prof:
+                                          "${state.loadedProfilePage.items[index].jobTitle}, ${state.loadedProfilePage.items[index].organizationEn}",
+                                      paket: state.loadedProfilePage
+                                          .items[index].packageName,
+                                      buttonvisible: true,
+                                      buttonred: true),
+                                ),
                               ],
                             ),
                           );

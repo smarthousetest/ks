@@ -27,7 +27,6 @@ class LangCubit extends Cubit<Locale> {
 
   void getlocale() async {
     final locale = await sharedPreferences.getString("locale");
-    print("locale $locale");
     if (locale != null) {
       setLocale(Locale("$locale"));
     }
@@ -74,20 +73,30 @@ class ProfilePageCubit extends Cubit<ProfilePageState> {
       : super(ProfilePageLoadedState());
 
   Future<void> fetchProfilePage() async {
-    print("fetchProfilePage");
     try {
-      print("1");
       emit(ProfilePageLoadingState());
-      print("2");
-
       ProfilePageModel _loaded =
           await profilePageRepository.getAllProfilePage();
-
-      print("_loaded $_loaded");
-
       emit(ProfilePageLoadedState(loadedProfilePage: _loaded));
     } catch (_) {
       emit(ProfilePageErrorState());
+    }
+  }
+}
+
+class ClaimPageCubit extends Cubit<ClaimPageState> {
+  final ClaimPageRepository claimPageRepository;
+
+  ClaimPageCubit(this.claimPageRepository) : super(ClaimPageLoadedState());
+
+  Future<void> fetchClaimPage() async {
+    try {
+      emit(ClaimPageLoadingState());
+      ClaimPageModel _loaded2 = await claimPageRepository.getAllClaimPage();
+      print("_loaded $_loaded2");
+      emit(ClaimPageLoadedState(loadedClaimPage: _loaded2));
+    } catch (_) {
+      emit(ClaimPageErrorState());
     }
   }
 }

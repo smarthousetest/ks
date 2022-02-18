@@ -6,3 +6,8 @@ class ProfilePageRepository {
   Future<ProfilePageModel> getAllProfilePage() =>
       profilePageApi.getProfilePage();
 }
+
+class ClaimPageRepository {
+  ClaimPageApi claimPageApi = ClaimPageApi();
+  Future<ClaimPageModel> getAllClaimPage() => claimPageApi.getClaimPage();
+}

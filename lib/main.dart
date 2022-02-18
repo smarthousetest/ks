@@ -61,6 +61,8 @@ class _MyAppState extends State<MyApp> {
               create: (context) => sl<AuthCubit>()..check()),
           BlocProvider<ProfilePageCubit>(
               create: (context) => sl<ProfilePageCubit>()..fetchProfilePage()),
+          BlocProvider<ClaimPageCubit>(
+              create: (context) => sl<ClaimPageCubit>()..fetchClaimPage()),
         ],
         child: BlocBuilder<LangCubit, Locale>(
           builder: (context, locale) => MaterialApp(

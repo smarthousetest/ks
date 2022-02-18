@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 final profilePageRepository = ProfilePageRepository();
+final claimPageRepository = ClaimPageRepository();
 
 Future<void> init() async {
   sl.registerFactory(() => BottomNavigationControllerSelect());
@@ -25,4 +26,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => secureStorage);
 
   sl.registerFactory(() => ProfilePageCubit(profilePageRepository));
+  sl.registerFactory(() => ClaimPageCubit(claimPageRepository));
 }
