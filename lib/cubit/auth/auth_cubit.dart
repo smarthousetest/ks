@@ -35,16 +35,19 @@ class AuthCubit extends Cubit<AuthState> {
       return;
     }
 
+    print("1");
     //   emit(InProcessState());
 
     final storedRefreshToken = await secureStorage.read(key: refreshTokenKey);
     final storedAccessToken = await secureStorage.read(key: accessTokenKey);
 
     if (storedRefreshToken == null) {
+      print("2");
       emit(LogoutedState());
       return;
     }
     if (storedAccessToken == null) {
+      print("3");
       refresh();
       return;
     }

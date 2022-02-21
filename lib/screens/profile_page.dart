@@ -30,7 +30,9 @@ class ProfilePage extends StatelessWidget {
         actions: [
           IconButton(
               iconSize: 40,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/settingsPage');
+              },
               icon: SvgPicture.asset("assets/icons/settings.svg")),
           IconButton(
               iconSize: 40,
