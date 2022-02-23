@@ -1,6 +1,10 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kazansummit/cubit/all/cubit.dart';
+import 'package:kazansummit/cubit/all/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/dropdown_input.dart';
@@ -54,6 +58,22 @@ class ClaimEditPage extends StatefulWidget {
 class _ClaimEditPageState extends State<ClaimEditPage> {
   @override
   Widget build(BuildContext context) {
+    RouteSettings settings = ModalRoute.of(context)!.settings;
+    String id = settings.arguments as String;
+
+    context.read<ClaimDeleteCubit>().stream.listen((state) {
+      if (state is ClaimDeleteClaimState) {
+        // SchedulerBinding.instance?.addPostFrameCallback((_) {
+        context.read<ProfilePageCubit>().fetchProfilePage();
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //   content: Text('В скором времени информация обновится!'),
+        // ));
+        // });
+      }
+    });
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kBacColor,
@@ -84,7 +104,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
               ExpansionTile(
                 collapsedBackgroundColor: Color(0xFFE2EAEB),
                 backgroundColor: Color(0xFFE2EAEB),
-                title: Text("Ddd"),
+                title: Text("Ddd $id"),
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -502,7 +522,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                   width: double.infinity,
                   child: TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        showAlertDialog(context, id);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
@@ -518,4 +538,38 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
           ),
         ));
   }
+}
+
+showAlertDialog(BuildContext context, String id) {
+  // set up the buttons
+  Widget remindButton = TextButton(
+    child: Text("${AppLocalizations.of(context)?.no}"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+
+  Widget cancelButton = TextButton(
+    child: Text("${AppLocalizations.of(context)?.yes}"),
+    onPressed: () {
+      context.read<ClaimDeleteCubit>().deleteclaim(id);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    content: Text("${AppLocalizations.of(context)?.areyou}"),
+    actions: [
+      remindButton,
+      cancelButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

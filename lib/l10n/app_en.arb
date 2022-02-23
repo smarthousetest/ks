@@ -84,6 +84,11 @@
 "togetaccess":"To get access to this section, please log in or register",
 "logout":"Log out",
 "deleteapplication":"Delete application",
+"areyou":"Are you sure you want to delete this application?",
+"yes":"Yes",
+"no":"No",
+"noapplications":"No applications",
+"allyourapplications":"All your applications will be on this page.",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

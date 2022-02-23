@@ -10,9 +10,14 @@ import 'package:kazansummit/widgets/green_line.dart';
 
 class ClaimPage extends StatelessWidget {
   const ClaimPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    RouteSettings settings = ModalRoute.of(context)!.settings;
+
+    String id = settings.arguments as String;
+
+    context.read<ClaimPageCubit>().fetchClaimPage(id);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kBacColor,
@@ -25,7 +30,7 @@ class ClaimPage extends StatelessWidget {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/claimeditpage');
+                  Navigator.pushNamed(context, '/claimeditpage', arguments: id);
                 },
                 icon: SvgPicture.asset("assets/icons/editp.svg")),
             IconButton(
@@ -43,7 +48,7 @@ class ClaimPage extends StatelessWidget {
           if (state is ClaimPageLoadedState) {
             return Text("${state.loadedClaimPage.templateParameters[1].code}");
           }
-          return Text("Error");
+          return Text("Error $id");
         })
 
         //  SingleChildScrollView(

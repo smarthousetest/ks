@@ -33,3 +33,11 @@ class ClaimPageLoadedState extends ClaimPageState {
 }
 
 class ClaimPageErrorState extends ClaimPageState {}
+
+abstract class ClaimDeleteState {}
+
+class ClaimDeleteClaimState extends ClaimDeleteState {}
+
+class ClaimDeleteErrorState extends ClaimDeleteState {}
+
+class ClaimDeleteEmptyState extends ClaimDeleteState {}

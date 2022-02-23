@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kazansummit/cubit/all/api.dart';
 import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/cubit/all/repository.dart';
 import 'package:kazansummit/cubit/all/state.dart';
@@ -89,14 +90,33 @@ class ClaimPageCubit extends Cubit<ClaimPageState> {
 
   ClaimPageCubit(this.claimPageRepository) : super(ClaimPageLoadedState());
 
-  Future<void> fetchClaimPage() async {
+  Future<void> fetchClaimPage(String id) async {
     try {
       emit(ClaimPageLoadingState());
-      ClaimPageModel _loaded2 = await claimPageRepository.getAllClaimPage();
+      ClaimPageModel _loaded2 = await claimPageRepository.getAllClaimPage(id);
       print("_loaded $_loaded2");
       emit(ClaimPageLoadedState(loadedClaimPage: _loaded2));
     } catch (_) {
       emit(ClaimPageErrorState());
+    }
+  }
+}
+
+class ClaimDeleteCubit extends Cubit<ClaimDeleteState> {
+  ClaimDeleteCubit() : super(ClaimDeleteEmptyState());
+
+  Future<void> deleteclaim(String id) async {
+    try {
+      String resp = await DeleteClaimApi().delete(id);
+      print(resp);
+      if (resp == "Delete") {
+        print("go del");
+        emit(ClaimDeleteClaimState());
+      } else {
+        emit(ClaimDeleteErrorState());
+      }
+    } catch (_) {
+      emit(ClaimDeleteErrorState());
     }
   }
 }

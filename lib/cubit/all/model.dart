@@ -42,30 +42,35 @@ class Item {
     required this.date,
   });
 
-  String id;
-  String informationAboutPerson;
-  String fullNameEn;
-  String organizationEn;
-  String jobTitle;
-  String eventTitle;
-  String templateName;
-  String packageName;
+  String? id;
+  String? informationAboutPerson;
+  String? fullNameEn;
+  String? organizationEn;
+  String? jobTitle;
+  String? eventTitle;
+  String? templateName;
+  String? packageName;
   ApplicationStatus applicationStatus;
   DateTime date;
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
-        id: json["id"],
-        informationAboutPerson: json["informationAboutPerson"],
-        fullNameEn: json["fullNameEN"],
-        organizationEn: json["organizationEN"],
-        jobTitle: json["jobTitle"],
-        eventTitle: json["eventTitle"],
-        templateName: json["templateName"],
-        packageName: json["packageName"],
-        applicationStatus:
-            ApplicationStatus.fromJson(json["applicationStatus"]),
-        date: DateTime.parse(json["date"]),
-      );
+  factory Item.fromJson(Map<String, dynamic> json) {
+    print(json["id"]);
+    print(json["informationAboutPerson"]);
+    print(json["fullNameEN"]);
+    print(json["organizationEN"]);
+    return Item(
+      id: json["id"],
+      informationAboutPerson: json["informationAboutPerson"] ?? "",
+      fullNameEn: json["fullNameEN"] ?? "",
+      organizationEn: json["organizationEN"] ?? "",
+      jobTitle: json["jobTitle"] ?? "",
+      eventTitle: json["eventTitle"] ?? "",
+      templateName: json["templateName"] ?? "",
+      packageName: json["packageName"] ?? "",
+      applicationStatus: ApplicationStatus.fromJson(json["applicationStatus"]),
+      date: DateTime.parse(json["date"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -87,8 +92,8 @@ class ApplicationStatus {
     required this.code,
   });
 
-  String value;
-  String code;
+  String? value;
+  String? code;
 
   factory ApplicationStatus.fromJson(Map<String, dynamic> json) =>
       ApplicationStatus(

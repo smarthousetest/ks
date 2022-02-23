@@ -7,6 +7,12 @@ class EmptyState extends AuthState {
   List<Object?> get props => [];
 }
 
+class LoginedupdState extends AuthState {
+  LoginedupdState();
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginedState extends AuthState {
   LoginedState();
   @override

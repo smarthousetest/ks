@@ -48,6 +48,36 @@ class ProfilePage extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
             if (state is ProfilePageLoadedState) {
+              if (state.loadedProfilePage.items?.length == 0) {
+                return RefreshIndicator(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/icons/editorm.svg",
+                            height: 60,
+                            width: 60,
+                            color: kIconColor,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                              "${AppLocalizations.of(context)?.noapplications}",
+                              style: kContentTextStyle.copyWith(
+                                  color: Color(0xFF828282))),
+                          SizedBox(height: 6),
+                          Text(
+                              "${AppLocalizations.of(context)?.allyourapplications}",
+                              style: kContentTextStyle.copyWith(
+                                  color: Color(0xFFBDBDBD)))
+                        ],
+                      ),
+                    ),
+                    onRefresh:
+                        context.read<ProfilePageCubit>().fetchProfilePage);
+              }
+
               return RefreshIndicator(
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -61,23 +91,34 @@ class ProfilePage extends StatelessWidget {
                                 SizedBox(height: 24),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.pushNamed(context, '/claimpage');
+                                    Navigator.pushNamed(context, '/claimpage',
+                                        arguments:
+                                            "${state.loadedProfilePage.items[index].id}");
                                   },
                                   child: ProfileCard(
-                                      status: state.loadedProfilePage
-                                          .items[index].applicationStatus.code,
-                                      statusname: state.loadedProfilePage
-                                          .items[index].applicationStatus.value,
+                                      status: state
+                                              .loadedProfilePage
+                                              .items[index]
+                                              .applicationStatus
+                                              .code ??
+                                          "",
+                                      statusname: state
+                                              .loadedProfilePage
+                                              .items[index]
+                                              .applicationStatus
+                                              .value ??
+                                          "",
                                       title: state.loadedProfilePage
-                                          .items[index].eventTitle,
+                                              .items[index].eventTitle ??
+                                          "",
                                       type: state.loadedProfilePage.items[index]
-                                          .templateName,
+                                              .templateName ??
+                                          "",
                                       name: state.loadedProfilePage.items[index]
-                                          .fullNameEn,
-                                      prof:
-                                          "${state.loadedProfilePage.items[index].jobTitle}, ${state.loadedProfilePage.items[index].organizationEn}",
-                                      paket: state.loadedProfilePage
-                                          .items[index].packageName,
+                                              .fullNameEn ??
+                                          "",
+                                      prof: "${state.loadedProfilePage.items[index].jobTitle}, ${state.loadedProfilePage.items[index].organizationEn}",
+                                      paket: state.loadedProfilePage.items[index].packageName,
                                       buttonvisible: true,
                                       buttonred: true),
                                 ),

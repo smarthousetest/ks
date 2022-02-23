@@ -62,7 +62,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<ProfilePageCubit>(
               create: (context) => sl<ProfilePageCubit>()..fetchProfilePage()),
           BlocProvider<ClaimPageCubit>(
-              create: (context) => sl<ClaimPageCubit>()..fetchClaimPage()),
+              create: (context) => sl<ClaimPageCubit>()),
+          BlocProvider<ClaimDeleteCubit>(
+              create: (context) => sl<ClaimDeleteCubit>()),
         ],
         child: BlocBuilder<LangCubit, Locale>(
           builder: (context, locale) => MaterialApp(
@@ -98,6 +100,7 @@ class _MyAppState extends State<MyApp> {
               '/claimpage': (BuildContext context) => ClaimPage(),
               '/claimeditpage': (BuildContext context) => ClaimEditPage(),
               '/evantputpage': (BuildContext context) => EventPagePut(),
+              '/main': (BuildContext context) => Management(),
             },
           ),
         ));

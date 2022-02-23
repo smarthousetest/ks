@@ -9,5 +9,6 @@ class ProfilePageRepository {
 
 class ClaimPageRepository {
   ClaimPageApi claimPageApi = ClaimPageApi();
-  Future<ClaimPageModel> getAllClaimPage() => claimPageApi.getClaimPage();
+  Future<ClaimPageModel> getAllClaimPage(String id) =>
+      claimPageApi.getClaimPage(id);
 }

@@ -14,6 +14,8 @@ class ProfilePageApi {
       headers.addAll({'Authorization': 'Bearer ${AppAuth.accessToken}'});
     }
 
+    print("accessToken ${AppAuth.accessToken}");
+
     dynamic locale = await sharedPreferences.getString("locale");
     String localeName = locale;
     Map<String, String> body = {"langName": localeName.toUpperCase()};
@@ -31,6 +33,7 @@ class ProfilePageApi {
 
     if (response.statusCode == 200) {
       final dynamic cardJson = json.decode(response.body);
+      print(cardJson);
       return ProfilePageModel.fromJson(cardJson);
     } else {
       throw Exception('Error fetching');
@@ -39,7 +42,7 @@ class ProfilePageApi {
 }
 
 class ClaimPageApi {
-  Future<ClaimPageModel> getClaimPage() async {
+  Future<ClaimPageModel> getClaimPage(String id) async {
     Map<String, String> headers = {"content-type": "application/json"};
 
     if (AppAuth.accessToken != null && AppAuth.accessToken!.isNotEmpty) {
@@ -50,7 +53,7 @@ class ClaimPageApi {
     String localeName = locale;
     Map<String, String> body = {"langName": localeName.toUpperCase()};
 
-    body.addAll({"statementId": "992deadc-e60f-4def-a3e8-584f5f4af576"});
+    body.addAll({"statementId": id});
 
     final response = await http.post(
         Uri.parse(
@@ -65,6 +68,34 @@ class ClaimPageApi {
       return ClaimPageModel.fromJson(cardJson);
     } else {
       throw Exception('Error fetching');
+    }
+  }
+}
+
+class DeleteClaimApi {
+  Future<String> delete(String id) async {
+    Map<String, String> headers = {"content-type": "application/json"};
+
+    if (AppAuth.accessToken != null && AppAuth.accessToken!.isNotEmpty) {
+      headers.addAll({'Authorization': 'Bearer ${AppAuth.accessToken}'});
+    }
+
+    Map<String, String> body = {"statementId": id};
+
+    final response = await http.post(
+        Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Delete"),
+        headers: headers,
+        body: jsonEncode(body));
+
+    print("podborka = ${response.body}");
+
+    if (response.statusCode == 200) {
+      print("fffff");
+      var kk = jsonDecode(response.body);
+      print(kk["statusCode"]);
+      return kk["statusCode"];
+    } else {
+      throw Exception('error delete');
     }
   }
 }
