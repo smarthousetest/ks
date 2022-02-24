@@ -36,7 +36,9 @@ class ProfilePage extends StatelessWidget {
               icon: SvgPicture.asset("assets/icons/settings.svg")),
           IconButton(
               iconSize: 40,
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthCubit>().refresh();
+              },
               icon: SvgPicture.asset("assets/icons/notification.svg"))
         ],
       ),

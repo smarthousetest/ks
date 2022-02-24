@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +48,12 @@ class ClaimPage extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (state is ClaimPageLoadedState) {
-            return Text("${state.loadedClaimPage.templateParameters[1].code}");
+            return Column(
+              children: [
+                Text("${state.loadedClaimPage.id}"),
+                Text("${state.loadedClaimPage.values["headOfficeCountry"]}")
+              ],
+            );
           }
           return Text("Error $id");
         })

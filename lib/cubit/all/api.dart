@@ -53,11 +53,10 @@ class ClaimPageApi {
     String localeName = locale;
     Map<String, String> body = {"langName": localeName.toUpperCase()};
 
-    body.addAll({"statementId": id});
+    body.addAll({"id": id});
 
     final response = await http.post(
-        Uri.parse(
-            "https://service-ks.maksatlabs.ru/api/Statements/userStatements/get"),
+        Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Values"),
         headers: headers,
         body: jsonEncode(body));
 

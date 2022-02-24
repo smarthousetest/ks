@@ -54,10 +54,6 @@ class Item {
   DateTime date;
 
   factory Item.fromJson(Map<String, dynamic> json) {
-    print(json["id"]);
-    print(json["informationAboutPerson"]);
-    print(json["fullNameEN"]);
-    print(json["organizationEN"]);
     return Item(
       id: json["id"],
       informationAboutPerson: json["informationAboutPerson"] ?? "",
@@ -112,49 +108,113 @@ class ApplicationStatus {
 ClaimPageModel claimPageModelFromJson(String str) =>
     ClaimPageModel.fromJson(json.decode(str));
 
-String claimPageModelToJson(ClaimPageModel data) => json.encode(data.toJson());
+// String claimPageModelToJson(ClaimPageModel data) => json.encode(data.toJson());
 
 class ClaimPageModel {
   ClaimPageModel({
-    required this.templateId,
-    required this.templateParameters,
+    this.id,
+    this.templateId,
+    this.groups,
+    this.fields,
+    this.values,
   });
 
-  String templateId;
-  List<TemplateParameter> templateParameters;
+  String? id;
+  String? templateId;
+  List<Group>? groups;
+  List<Field>? fields;
+  Map<dynamic, dynamic>? values;
 
   factory ClaimPageModel.fromJson(Map<String, dynamic> json) {
     return ClaimPageModel(
-      templateId: json["templateId"],
-      templateParameters: List<TemplateParameter>.from(
-          json["templateParameters"].map((x) => TemplateParameter.fromJson(x))),
-    );
+        id: json["id"] == null ? null : json["id"],
+        templateId: json["templateId"] == null ? null : json["templateId"],
+        groups: json["groups"] == null
+            ? null
+            : List<Group>.from(json["groups"].map((x) => Group.fromJson(x))),
+        fields: json["fields"] == null
+            ? null
+            : List<Field>.from(json["fields"].map((x) => Field.fromJson(x))),
+        values: json["values"]);
   }
-
-  Map<String, dynamic> toJson() => {
-        "templateId": templateId,
-        "templateParameters":
-            List<dynamic>.from(templateParameters.map((x) => x.toJson())),
-      };
 }
 
-class TemplateParameter {
-  TemplateParameter({
+class Field {
+  Field({
+    this.type,
+    this.items,
+    this.display,
     this.code,
-    this.value,
+    this.disabled,
   });
 
+  String? type;
+  List<Citizenship?>? items;
+  String? display;
   String? code;
-  String? value;
+  bool? disabled;
 
-  factory TemplateParameter.fromJson(Map<String, dynamic> json) =>
-      TemplateParameter(
-        code: json["code"],
-        value: json["value"] == null ? null : json["value"],
+  factory Field.fromJson(Map<String, dynamic> json) => Field(
+        type: json["type"] == null ? null : json["type"],
+        items: json["items"] == null
+            ? null
+            : List<Citizenship>.from(
+                json["items"].map((x) => Citizenship.fromJson(x))),
+        display: json["display"] == null ? null : json["display"],
+        code: json["code"] == null ? null : json["code"],
+        disabled: json["disabled"] == null ? null : json["disabled"],
       );
 
   Map<String, dynamic> toJson() => {
-        "code": code,
-        "value": value == null ? null : value,
+        "type": type == null ? null : type,
+        "items": items == null
+            ? null
+            : List<dynamic>.from(items!.map((x) => x?.toJson())),
+        "display": display == null ? null : display,
+        "code": code == null ? null : code,
+        "disabled": disabled == null ? null : disabled,
+      };
+}
+
+class Citizenship {
+  Citizenship({
+    this.id,
+    this.display,
+  });
+
+  String? id;
+  String? display;
+
+  factory Citizenship.fromJson(Map<String, dynamic> json) => Citizenship(
+        id: json["id"] == null ? null : json["id"],
+        display: json["display"] == null ? null : json["display"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id == null ? null : id,
+        "display": display == null ? null : display,
+      };
+}
+
+class Group {
+  Group({
+    this.display,
+    this.fields,
+  });
+
+  String? display;
+  List<String>? fields;
+
+  factory Group.fromJson(Map<String, dynamic> json) => Group(
+        display: json["display"] == null ? null : json["display"],
+        fields: json["fields"] == null
+            ? null
+            : List<String>.from(json["fields"].map((x) => x)),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "display": display == null ? null : display,
+        "fields":
+            fields == null ? null : List<dynamic>.from(fields!.map((x) => x)),
       };
 }
