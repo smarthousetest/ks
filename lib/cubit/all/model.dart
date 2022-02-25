@@ -8,9 +8,6 @@ import 'dart:convert';
 ProfilePageModel profilePageModelFromJson(String str) =>
     ProfilePageModel.fromJson(json.decode(str));
 
-String profilePageModelToJson(ProfilePageModel data) =>
-    json.encode(data.toJson());
-
 class ProfilePageModel {
   ProfilePageModel({
     required this.items,
@@ -22,25 +19,19 @@ class ProfilePageModel {
       ProfilePageModel(
         items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "items": List<dynamic>.from(items.map((x) => x.toJson())),
-      };
 }
 
 class Item {
-  Item({
-    required this.id,
-    required this.informationAboutPerson,
-    required this.fullNameEn,
-    required this.organizationEn,
-    required this.jobTitle,
-    required this.eventTitle,
-    required this.templateName,
-    required this.packageName,
-    required this.applicationStatus,
-    required this.date,
-  });
+  Item(
+      {required this.id,
+      required this.informationAboutPerson,
+      required this.fullNameEn,
+      required this.organizationEn,
+      required this.jobTitle,
+      required this.eventTitle,
+      required this.templateName,
+      required this.packageName,
+      required this.applicationStatus});
 
   String? id;
   String? informationAboutPerson;
@@ -51,35 +42,32 @@ class Item {
   String? templateName;
   String? packageName;
   ApplicationStatus applicationStatus;
-  DateTime date;
 
   factory Item.fromJson(Map<String, dynamic> json) {
-    return Item(
-      id: json["id"],
-      informationAboutPerson: json["informationAboutPerson"] ?? "",
-      fullNameEn: json["fullNameEN"] ?? "",
-      organizationEn: json["organizationEN"] ?? "",
-      jobTitle: json["jobTitle"] ?? "",
-      eventTitle: json["eventTitle"] ?? "",
-      templateName: json["templateName"] ?? "",
-      packageName: json["packageName"] ?? "",
-      applicationStatus: ApplicationStatus.fromJson(json["applicationStatus"]),
-      date: DateTime.parse(json["date"]),
-    );
-  }
+    print(json["id"]);
+    print(json["informationAboutPerson"]);
+    print(json["fullNameEN"]);
+    print(json["organizationEN"]);
+    print(json["jobTitle"]);
+    print(json["eventTitle"]);
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "informationAboutPerson": informationAboutPerson,
-        "fullNameEN": fullNameEn,
-        "organizationEN": organizationEn,
-        "jobTitle": jobTitle,
-        "eventTitle": eventTitle,
-        "templateName": templateName,
-        "packageName": packageName,
-        "applicationStatus": applicationStatus.toJson(),
-        "date": date.toIso8601String(),
-      };
+    print(json["templateName"]);
+    print(json["packageName"]);
+    print(json["date"]);
+
+    print(json["applicationStatus"]);
+    return Item(
+        id: json["id"],
+        informationAboutPerson: json["informationAboutPerson"] ?? "",
+        fullNameEn: json["fullNameEN"] ?? "",
+        organizationEn: json["organizationEN"] ?? "",
+        jobTitle: json["jobTitle"] ?? "",
+        eventTitle: json["eventTitle"] ?? "",
+        templateName: json["templateName"] ?? "",
+        packageName: json["packageName"] ?? "",
+        applicationStatus:
+            ApplicationStatus.fromJson(json["applicationStatus"]));
+  }
 }
 
 class ApplicationStatus {

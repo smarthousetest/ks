@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,11 +49,132 @@ class ClaimPage extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (state is ClaimPageLoadedState) {
-            return Column(
-              children: [
-                Text("${state.loadedClaimPage.id}"),
-                Text("${state.loadedClaimPage.values["headOfficeCountry"]}")
-              ],
+            return SingleChildScrollView(
+              //  physics: NeverScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  const SizedBox(height: 6),
+                  const Center(
+                    child: Text("KazanSummit2022",
+                        style: TextStyle(
+                            color: Color(0xFF3B8992),
+                            fontWeight: FontWeight.w700,
+                            fontSize: MediumTextSize)),
+                  ),
+                  //   Text("${state.loadedClaimPage.values["headOfficeCountry"]}"),
+                  ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: state.loadedClaimPage.groups?.length,
+                      itemBuilder: (context, index) {
+                        int schet = 0;
+                        return Column(
+                          children: [
+                            const SizedBox(height: 16),
+                            GreenLine(
+                                text: state.loadedClaimPage.groups[index]
+                                        .display ??
+                                    ""),
+                            ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: state.loadedClaimPage.groups[index]
+                                    .fields?.length,
+                                itemBuilder: (context, index2) {
+                                  String? text = "";
+                                  String? text2 = "";
+                                  for (var i = 0;
+                                      i < state.loadedClaimPage.fields?.length;
+                                      i++) {
+                                    if (state.loadedClaimPage.groups[index]
+                                            .fields[index2] ==
+                                        state.loadedClaimPage.fields[i].code) {
+                                      text = state
+                                          .loadedClaimPage.fields[i]?.display;
+                                    }
+                                  }
+
+                                  if (state.loadedClaimPage.values[
+                                          "${state.loadedClaimPage.groups[index].fields[index2]}"]
+                                      is Map) {
+                                    text2 =
+                                        "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["display"]}";
+                                  } else {
+                                    text2 =
+                                        "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}";
+                                  }
+
+                                  if (text2 == "null") {
+                                    schet++;
+
+                                    if (schet ==
+                                        state.loadedClaimPage.groups[index]
+                                            .fields?.length) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(height: 16),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 16, right: 16),
+                                            child: Text(
+                                              "${AppLocalizations.of(context)?.noinformation}",
+                                              style:
+                                                  kzayavblackTextStyle.copyWith(
+                                                      color: Color(0xFFBDBDBD)),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    }
+
+                                    return Container();
+                                  }
+
+                                  if (text == null) {
+                                    return Container();
+                                  }
+
+                                  print(text);
+
+                                  if (text2 == "true") {
+                                    text2 = AppLocalizations.of(context)?.yes;
+                                  }
+
+                                  if (text2 == "false") {
+                                    text2 = AppLocalizations.of(context)?.no;
+                                  }
+
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16, right: 16),
+                                    child: Column(children: [
+                                      const SizedBox(height: 16),
+                                      Row(children: [
+                                        Flexible(
+                                          child: Text(
+                                            "${text}:",
+                                            style: kzayavgreenTextStyle,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Flexible(
+                                          child: AutoSizeText(
+                                            "${text2}",
+                                            style: kzayavblackTextStyle,
+                                          ),
+                                        )
+                                      ])
+                                    ]),
+                                  );
+                                }),
+                          ],
+                        );
+                      }),
+                  const SizedBox(height: 16)
+                ],
+              ),
             );
           }
           return Text("Error $id");

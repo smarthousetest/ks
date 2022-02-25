@@ -89,6 +89,7 @@
 "no":"No",
 "noapplications":"No applications",
 "allyourapplications":"All your applications will be on this page.",
+"noinformation":"No information",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",
