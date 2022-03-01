@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -8,6 +9,7 @@ import 'package:kazansummit/cubit/all/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/dropdown_input.dart';
+import 'package:kazansummit/widgets/green_line.dart';
 import 'package:kazansummit/widgets/text_input.dart';
 import 'package:dotted_border/dotted_border.dart';
 
@@ -89,454 +91,562 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                 icon: SvgPicture.asset("assets/icons/notification.svg"))
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 6),
-              const Center(
-                child: Text("KazanSummit2022",
-                    style: TextStyle(
-                        color: Color(0xFF3B8992),
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediumTextSize)),
-              ),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                collapsedBackgroundColor: Color(0xFFE2EAEB),
-                backgroundColor: Color(0xFFE2EAEB),
-                title: Text("Ddd $id"),
+        body: BlocBuilder<ClaimPageCubit, ClaimPageState>(
+            builder: (context, state) {
+          print(state);
+          if (state is ClaimPageLoadingState) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is ClaimPageLoadedState) {
+            return SingleChildScrollView(
+              //  physics: NeverScrollableScrollPhysics(),
+              child: Column(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    color: kBacColor,
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: CircularProfileAvatar(
-                              "https://trikky.ru/wp-content/blogs.dir/1/files/2019/01/24/koty-zhivotnye-665.jpg",
-                              radius: 52),
-                        ),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue1),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue2),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue3),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue4),
-                        const SizedBox(height: 16),
-                        TextInput(
-                            text: "text", textFieldControler: textcontroller1),
-                        const SizedBox(height: 16),
-                        TextInput(
-                            text: "text", textFieldControler: textcontroller2),
-                        const SizedBox(height: 16),
-                        TextInput(
-                          text: "text",
-                          textFieldControler: textcontroller3,
-                          icon2: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: SvgPicture.asset(
-                              "assets/icons/calendar.svg",
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        TextInput(
-                            text: "text", textFieldControler: textcontroller4),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue5),
-                        const SizedBox(height: 16),
-                        DropdownInput(
-                            text: "text",
-                            list: ["one", "two"],
-                            selectedvalue: selectedvalue6),
-                        const SizedBox(height: 16),
-                        Row(
+                  const SizedBox(height: 6),
+                  const Center(
+                    child: Text("KazanSummit2022",
+                        style: TextStyle(
+                            color: Color(0xFF3B8992),
+                            fontWeight: FontWeight.w700,
+                            fontSize: MediumTextSize)),
+                  ),
+                  //   Text("${state.loadedClaimPage.values["headOfficeCountry"]}"),
+                  ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: state.loadedClaimPage.groups?.length,
+                      itemBuilder: (context, index) {
+                        return Column(
                           children: [
-                            Checkbox(value: false, onChanged: (val) {}),
-                            Text("data")
+                            const SizedBox(height: 16),
+                            ExpansionTile(
+                                collapsedBackgroundColor: Color(0xFFE2EAEB),
+                                backgroundColor: Color(0xFFE2EAEB),
+                                title: Text(state.loadedClaimPage.groups[index]
+                                        .display ??
+                                    ""),
+                                children: [
+                                  Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      color: kBacColor,
+                                      padding: EdgeInsets.all(16),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ListView.builder(
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemCount: state
+                                                    .loadedClaimPage
+                                                    .groups[index]
+                                                    .fields
+                                                    ?.length,
+                                                itemBuilder: (context, index2) {
+                                                  String? text = "";
+                                                  String? type = "";
+
+                                                  for (var i = 0;
+                                                      i <
+                                                          state.loadedClaimPage
+                                                              .fields?.length;
+                                                      i++) {
+                                                    if (state
+                                                            .loadedClaimPage
+                                                            .groups[index]
+                                                            .fields[index2] ==
+                                                        state.loadedClaimPage
+                                                            .fields[i].code) {
+                                                      text = state
+                                                          .loadedClaimPage
+                                                          .fields[i]
+                                                          ?.display;
+                                                      type = state
+                                                          .loadedClaimPage
+                                                          .fields[i]
+                                                          ?.type;
+                                                    }
+                                                  }
+
+                                                  return Column(
+                                                    children: [
+                                                      const SizedBox(
+                                                          height: 16),
+                                                      Text("_____"),
+                                                      Text(
+                                                          "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}"),
+                                                      Text("_____"),
+                                                      Text("$text"),
+                                                      Text("_____"),
+                                                      Text("$type"),
+                                                      Text("_____"),
+                                                    ],
+                                                  );
+                                                })
+                                          ]))
+                                ]),
                           ],
-                        )
-                      ],
-                    ),
-                  )
+                        );
+                      }),
+                  const SizedBox(height: 16)
                 ],
               ),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller5),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller6),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller7),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller8),
-                              const SizedBox(height: 16),
-                              DropdownInput(
-                                  text: "text",
-                                  list: ["one", "two"],
-                                  selectedvalue: selectedvalue7),
-                              const SizedBox(height: 16),
-                              DropdownInput(
-                                  text: "text",
-                                  list: ["one", "two"],
-                                  selectedvalue: selectedvalue8),
-                              const SizedBox(height: 16),
-                              Container(
-                                height: 80,
-                                child: TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller9,
-                                  multline: true,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                            ]))
-                  ]),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller10),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller11),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller12),
-                            ]))
-                  ]),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller13),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller14),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                text: "text",
-                                textFieldControler: textcontroller15,
-                                icon2: Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/calendar.svg",
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                text: "text",
-                                textFieldControler: textcontroller16,
-                                icon2: Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/clock.svg",
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ]))
-                  ]),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller17),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller18),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                text: "text",
-                                textFieldControler: textcontroller19,
-                                icon2: Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/calendar.svg",
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              TextInput(
-                                text: "text",
-                                textFieldControler: textcontroller20,
-                                icon2: Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/clock.svg",
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ]))
-                  ]),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              Container(
-                                height: 160,
-                                child: TextInput(
-                                  text: "text",
-                                  textFieldControler: textcontroller21,
-                                  multline: true,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                            ]))
-                  ]),
-              const SizedBox(height: 16),
-              ExpansionTile(
-                  collapsedBackgroundColor: Color(0xFFE2EAEB),
-                  backgroundColor: Color(0xFFE2EAEB),
-                  title: Text("Ddd"),
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: kBacColor,
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              Text(
-                                "data",
-                                style: kContentTextStyle,
-                              ),
-                              const SizedBox(height: 8),
-                              SizedBox(
-                                  width: double.infinity,
-                                  child: DottedBorder(
-                                      dashPattern: [9, 9],
-                                      borderType: BorderType.RRect,
-                                      radius: Radius.circular(9),
-                                      color: Color(0xFF3B8992),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(14),
-                                        child: Center(
-                                            child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "fff",
-                                              style: TextStyle(
-                                                  color: Color(0xFF3B8992),
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14),
-                                            ),
-                                            SizedBox(width: 15),
-                                            SvgPicture.asset(
-                                              "assets/icons/fileplus.svg",
-                                              color: Color(0xff3B8992),
-                                            )
-                                          ],
-                                        )),
-                                      ))),
-                              const SizedBox(height: 16),
-                              Text(
-                                "data",
-                                style: kContentTextStyle,
-                              ),
-                              const SizedBox(height: 8),
-                              SizedBox(
-                                  width: double.infinity,
-                                  child: DottedBorder(
-                                      dashPattern: [9, 9],
-                                      borderType: BorderType.RRect,
-                                      radius: Radius.circular(9),
-                                      color: Color(0xFF3B8992),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(14),
-                                        child: Center(
-                                            child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "fff",
-                                              style: TextStyle(
-                                                  color: Color(0xFF3B8992),
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14),
-                                            ),
-                                            SizedBox(width: 15),
-                                            SvgPicture.asset(
-                                              "assets/icons/fileplus.svg",
-                                              color: Color(0xff3B8992),
-                                            )
-                                          ],
-                                        )),
-                                      ))),
-                              const SizedBox(height: 16),
-                              Text(
-                                "data",
-                                style: kContentTextStyle,
-                              ),
-                              const SizedBox(height: 8),
-                              SizedBox(
-                                  width: double.infinity,
-                                  child: DottedBorder(
-                                      dashPattern: [9, 9],
-                                      borderType: BorderType.RRect,
-                                      radius: Radius.circular(9),
-                                      color: Color(0xFF3B8992),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(14),
-                                        child: Center(
-                                            child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "fff",
-                                              style: TextStyle(
-                                                  color: Color(0xFF3B8992),
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14),
-                                            ),
-                                            SizedBox(width: 15),
-                                            SvgPicture.asset(
-                                              "assets/icons/fileplus.svg",
-                                              color: Color(0xff3B8992),
-                                            )
-                                          ],
-                                        )),
-                                      ))),
-                              const SizedBox(height: 16),
-                            ]))
-                  ]),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: Text(
-                          "${AppLocalizations.of(context)?.savechanges}",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                      onPressed: () {
-                        showAlertDialog(context, id);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: Text(
-                          "${AppLocalizations.of(context)?.deleteapplication}",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xffB03A35)),
-                        ),
-                      )),
-                ),
-              ),
-            ],
-          ),
-        ));
+            );
+          }
+          return Text("Error $id");
+        }));
+
+    //  SingleChildScrollView(
+    //   child: Column(
+    //     children: [
+    //       const SizedBox(height: 6),
+    //       const Center(
+    //         child: Text("KazanSummit2022",
+    //             style: TextStyle(
+    //                 color: Color(0xFF3B8992),
+    //                 fontWeight: FontWeight.w700,
+    //                 fontSize: MediumTextSize)),
+    //       ),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //         collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //         backgroundColor: Color(0xFFE2EAEB),
+    //         title: Text("Ddd $id"),
+    //         children: [
+    //           Container(
+    //             width: MediaQuery.of(context).size.width,
+    //             color: kBacColor,
+    //             padding: EdgeInsets.all(16),
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               children: [
+    //                 Center(
+    //                   child: CircularProfileAvatar(
+    //                       "https://trikky.ru/wp-content/blogs.dir/1/files/2019/01/24/koty-zhivotnye-665.jpg",
+    //                       radius: 52),
+    //                 ),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue1),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue2),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue3),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue4),
+    //                 const SizedBox(height: 16),
+    //                 TextInput(
+    //                     text: "text", textFieldControler: textcontroller1),
+    //                 const SizedBox(height: 16),
+    //                 TextInput(
+    //                     text: "text", textFieldControler: textcontroller2),
+    //                 const SizedBox(height: 16),
+    //                 TextInput(
+    //                   text: "text",
+    //                   textFieldControler: textcontroller3,
+    //                   icon2: Padding(
+    //                     padding: const EdgeInsets.all(15),
+    //                     child: SvgPicture.asset(
+    //                       "assets/icons/calendar.svg",
+    //                       color: Colors.black,
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 const SizedBox(height: 16),
+    //                 TextInput(
+    //                     text: "text", textFieldControler: textcontroller4),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue5),
+    //                 const SizedBox(height: 16),
+    //                 DropdownInput(
+    //                     text: "text",
+    //                     list: ["one", "two"],
+    //                     selectedvalue: selectedvalue6),
+    //                 const SizedBox(height: 16),
+    //                 Row(
+    //                   children: [
+    //                     Checkbox(value: false, onChanged: (val) {}),
+    //                     Text("data")
+    //                   ],
+    //                 )
+    //               ],
+    //             ),
+    //           )
+    //         ],
+    //       ),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller5),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller6),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller7),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller8),
+    //                       const SizedBox(height: 16),
+    //                       DropdownInput(
+    //                           text: "text",
+    //                           list: ["one", "two"],
+    //                           selectedvalue: selectedvalue7),
+    //                       const SizedBox(height: 16),
+    //                       DropdownInput(
+    //                           text: "text",
+    //                           list: ["one", "two"],
+    //                           selectedvalue: selectedvalue8),
+    //                       const SizedBox(height: 16),
+    //                       Container(
+    //                         height: 80,
+    //                         child: TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller9,
+    //                           multline: true,
+    //                         ),
+    //                       ),
+    //                       const SizedBox(height: 16),
+    //                     ]))
+    //           ]),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller10),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller11),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller12),
+    //                     ]))
+    //           ]),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller13),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller14),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                         text: "text",
+    //                         textFieldControler: textcontroller15,
+    //                         icon2: Padding(
+    //                           padding: const EdgeInsets.all(15),
+    //                           child: SvgPicture.asset(
+    //                             "assets/icons/calendar.svg",
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                         text: "text",
+    //                         textFieldControler: textcontroller16,
+    //                         icon2: Padding(
+    //                           padding: const EdgeInsets.all(15),
+    //                           child: SvgPicture.asset(
+    //                             "assets/icons/clock.svg",
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ]))
+    //           ]),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller17),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller18),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                         text: "text",
+    //                         textFieldControler: textcontroller19,
+    //                         icon2: Padding(
+    //                           padding: const EdgeInsets.all(15),
+    //                           child: SvgPicture.asset(
+    //                             "assets/icons/calendar.svg",
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                       const SizedBox(height: 16),
+    //                       TextInput(
+    //                         text: "text",
+    //                         textFieldControler: textcontroller20,
+    //                         icon2: Padding(
+    //                           padding: const EdgeInsets.all(15),
+    //                           child: SvgPicture.asset(
+    //                             "assets/icons/clock.svg",
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ]))
+    //           ]),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       Container(
+    //                         height: 160,
+    //                         child: TextInput(
+    //                           text: "text",
+    //                           textFieldControler: textcontroller21,
+    //                           multline: true,
+    //                         ),
+    //                       ),
+    //                       const SizedBox(height: 16),
+    //                     ]))
+    //           ]),
+    //       const SizedBox(height: 16),
+    //       ExpansionTile(
+    //           collapsedBackgroundColor: Color(0xFFE2EAEB),
+    //           backgroundColor: Color(0xFFE2EAEB),
+    //           title: Text("Ddd"),
+    //           children: [
+    //             Container(
+    //                 width: MediaQuery.of(context).size.width,
+    //                 color: kBacColor,
+    //                 padding: EdgeInsets.all(16),
+    //                 child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       const SizedBox(height: 16),
+    //                       Text(
+    //                         "data",
+    //                         style: kContentTextStyle,
+    //                       ),
+    //                       const SizedBox(height: 8),
+    //                       SizedBox(
+    //                           width: double.infinity,
+    //                           child: DottedBorder(
+    //                               dashPattern: [9, 9],
+    //                               borderType: BorderType.RRect,
+    //                               radius: Radius.circular(9),
+    //                               color: Color(0xFF3B8992),
+    //                               child: Padding(
+    //                                 padding: const EdgeInsets.all(14),
+    //                                 child: Center(
+    //                                     child: Row(
+    //                                   mainAxisAlignment:
+    //                                       MainAxisAlignment.center,
+    //                                   children: [
+    //                                     Text(
+    //                                       "fff",
+    //                                       style: TextStyle(
+    //                                           color: Color(0xFF3B8992),
+    //                                           fontWeight: FontWeight.w400,
+    //                                           fontSize: 14),
+    //                                     ),
+    //                                     SizedBox(width: 15),
+    //                                     SvgPicture.asset(
+    //                                       "assets/icons/fileplus.svg",
+    //                                       color: Color(0xff3B8992),
+    //                                     )
+    //                                   ],
+    //                                 )),
+    //                               ))),
+    //                       const SizedBox(height: 16),
+    //                       Text(
+    //                         "data",
+    //                         style: kContentTextStyle,
+    //                       ),
+    //                       const SizedBox(height: 8),
+    //                       SizedBox(
+    //                           width: double.infinity,
+    //                           child: DottedBorder(
+    //                               dashPattern: [9, 9],
+    //                               borderType: BorderType.RRect,
+    //                               radius: Radius.circular(9),
+    //                               color: Color(0xFF3B8992),
+    //                               child: Padding(
+    //                                 padding: const EdgeInsets.all(14),
+    //                                 child: Center(
+    //                                     child: Row(
+    //                                   mainAxisAlignment:
+    //                                       MainAxisAlignment.center,
+    //                                   children: [
+    //                                     Text(
+    //                                       "fff",
+    //                                       style: TextStyle(
+    //                                           color: Color(0xFF3B8992),
+    //                                           fontWeight: FontWeight.w400,
+    //                                           fontSize: 14),
+    //                                     ),
+    //                                     SizedBox(width: 15),
+    //                                     SvgPicture.asset(
+    //                                       "assets/icons/fileplus.svg",
+    //                                       color: Color(0xff3B8992),
+    //                                     )
+    //                                   ],
+    //                                 )),
+    //                               ))),
+    //                       const SizedBox(height: 16),
+    //                       Text(
+    //                         "data",
+    //                         style: kContentTextStyle,
+    //                       ),
+    //                       const SizedBox(height: 8),
+    //                       SizedBox(
+    //                           width: double.infinity,
+    //                           child: DottedBorder(
+    //                               dashPattern: [9, 9],
+    //                               borderType: BorderType.RRect,
+    //                               radius: Radius.circular(9),
+    //                               color: Color(0xFF3B8992),
+    //                               child: Padding(
+    //                                 padding: const EdgeInsets.all(14),
+    //                                 child: Center(
+    //                                     child: Row(
+    //                                   mainAxisAlignment:
+    //                                       MainAxisAlignment.center,
+    //                                   children: [
+    //                                     Text(
+    //                                       "fff",
+    //                                       style: TextStyle(
+    //                                           color: Color(0xFF3B8992),
+    //                                           fontWeight: FontWeight.w400,
+    //                                           fontSize: 14),
+    //                                     ),
+    //                                     SizedBox(width: 15),
+    //                                     SvgPicture.asset(
+    //                                       "assets/icons/fileplus.svg",
+    //                                       color: Color(0xff3B8992),
+    //                                     )
+    //                                   ],
+    //                                 )),
+    //                               ))),
+    //                       const SizedBox(height: 16),
+    //                     ]))
+    //           ]),
+    //       Padding(
+    //         padding: const EdgeInsets.all(16),
+    //         child: SizedBox(
+    //           width: double.infinity,
+    //           child: ElevatedButton(
+    //               onPressed: () {
+    //                 Navigator.pop(context);
+    //               },
+    //               child: Padding(
+    //                 padding: const EdgeInsets.all(14.0),
+    //                 child: Text(
+    //                   "${AppLocalizations.of(context)?.savechanges}",
+    //                   style: TextStyle(fontSize: 16),
+    //                 ),
+    //               )),
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+    //         child: SizedBox(
+    //           width: double.infinity,
+    //           child: TextButton(
+    //               onPressed: () {
+    //                 showAlertDialog(context, id);
+    //               },
+    //               child: Padding(
+    //                 padding: const EdgeInsets.all(14.0),
+    //                 child: Text(
+    //                   "${AppLocalizations.of(context)?.deleteapplication}",
+    //                   style:
+    //                       TextStyle(fontSize: 16, color: Color(0xffB03A35)),
+    //                 ),
+    //               )),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // )
+
+    //   );
   }
 }
 
