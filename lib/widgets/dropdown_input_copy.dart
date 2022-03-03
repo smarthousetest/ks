@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kazansummit/cubit/all/model.dart';
+import 'package:kazansummit/main.dart';
+import 'package:kazansummit/screens/claim_edit_page.dart';
 
 Citizenship? selectedvalueglobal;
 
@@ -7,9 +9,13 @@ class DropdownInputCopy extends StatefulWidget {
   String text;
   List<Citizenship> list;
   Citizenship selectedvalue;
+  String find;
 
   DropdownInputCopy(
-      {required this.text, required this.list, required this.selectedvalue});
+      {required this.text,
+      required this.list,
+      required this.selectedvalue,
+      required this.find});
 
   @override
   _DropdownInputCopyState createState() => _DropdownInputCopyState();
@@ -23,6 +29,7 @@ class _DropdownInputCopyState extends State<DropdownInputCopy> {
     } else {
       for (var i = 0; i < widget.list.length; i++) {
         if (widget.list[i].id == widget.selectedvalue.id) {
+          widget.selectedvalue = widget.list[i];
           selectedvalueglobal = widget.list[i];
         }
       }
@@ -65,8 +72,9 @@ class _DropdownInputCopyState extends State<DropdownInputCopy> {
       onChanged: (data) {
         setState(() {
           widget.selectedvalue = data!;
+          drops.selecteddrops[widget.find] = data;
           selectedvalueglobal = data;
-
+          print(widget.selectedvalue);
           print(data.display);
         });
       },

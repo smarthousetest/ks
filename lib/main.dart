@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/auth/auth_cubit.dart';
 import 'package:kazansummit/cubit/auth/auth_state.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
+import 'package:kazansummit/other/drops.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/screens/claim_edit_page.dart';
 import 'package:kazansummit/screens/claim_page.dart';

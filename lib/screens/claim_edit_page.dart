@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/cubit/all/state.dart';
+import 'package:kazansummit/main.dart';
+import 'package:kazansummit/other/drops.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/dropdown_input.dart';
@@ -18,6 +20,8 @@ import 'package:dotted_border/dotted_border.dart';
 Map<String, TextEditingController> textEditingControllers = {};
 
 Map<String, Citizenship> selecteddrops = {};
+
+Drops drops = Drops({"null": Citizenship(id: "null", display: "null")});
 
 class ClaimEditPage extends StatefulWidget {
   const ClaimEditPage({Key? key}) : super(key: key);
@@ -57,7 +61,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
-                  for (var item in selecteddrops.entries) {
+                  for (var item in drops.selecteddrops.entries) {
                     print("${item.key} - ${item.value.display}");
                   }
                 },
@@ -232,18 +236,17 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                                 "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["display"]}");
                                                       }
 
-                                                      widget =
-                                                          DropdownInputCopy(
-                                                              text: "$text",
-                                                              list: items,
-                                                              selectedvalue:
-                                                                  str);
+                                                      widget = DropdownInputCopy(
+                                                          text: "$text",
+                                                          list: items,
+                                                          find:
+                                                              "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                          selectedvalue: str);
 
-                                                      print("str - $str");
-
-                                                      selecteddrops.putIfAbsent(
-                                                          "${state.loadedClaimPage.groups[index].fields[index2]}",
-                                                          () => str);
+                                                      drops.selecteddrops
+                                                          .putIfAbsent(
+                                                              "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                              () => str);
                                                     }
                                                   }
 
