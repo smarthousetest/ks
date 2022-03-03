@@ -5,50 +5,19 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/cubit/all/cubit.dart';
+import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/cubit/all/state.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/dropdown_input.dart';
+import 'package:kazansummit/widgets/dropdown_input_copy.dart';
 import 'package:kazansummit/widgets/green_line.dart';
 import 'package:kazansummit/widgets/text_input.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-final textcontroller1 = TextEditingController();
-final textcontroller2 = TextEditingController();
-final textcontroller3 = TextEditingController();
-final textcontroller4 = TextEditingController();
+Map<String, TextEditingController> textEditingControllers = {};
 
-final textcontroller5 = TextEditingController();
-final textcontroller6 = TextEditingController();
-final textcontroller7 = TextEditingController();
-final textcontroller8 = TextEditingController();
-final textcontroller9 = TextEditingController();
-
-final textcontroller10 = TextEditingController();
-final textcontroller11 = TextEditingController();
-final textcontroller12 = TextEditingController();
-
-final textcontroller13 = TextEditingController();
-final textcontroller14 = TextEditingController();
-final textcontroller15 = TextEditingController();
-final textcontroller16 = TextEditingController();
-
-final textcontroller17 = TextEditingController();
-final textcontroller18 = TextEditingController();
-final textcontroller19 = TextEditingController();
-final textcontroller20 = TextEditingController();
-
-final textcontroller21 = TextEditingController();
-
-String? selectedvalue1;
-String? selectedvalue2;
-String? selectedvalue3;
-String? selectedvalue4;
-String? selectedvalue5;
-String? selectedvalue6;
-
-String? selectedvalue7;
-String? selectedvalue8;
+Map<String, Citizenship> selecteddrops = {};
 
 class ClaimEditPage extends StatefulWidget {
   const ClaimEditPage({Key? key}) : super(key: key);
@@ -87,7 +56,11 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
           actions: [
             IconButton(
                 iconSize: 40,
-                onPressed: () {},
+                onPressed: () {
+                  for (var item in selecteddrops.entries) {
+                    print("${item.key} - ${item.value.display}");
+                  }
+                },
                 icon: SvgPicture.asset("assets/icons/notification.svg"))
           ],
         ),
@@ -146,6 +119,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                 itemBuilder: (context, index2) {
                                                   String? text = "";
                                                   String? type = "";
+                                                  var items;
 
                                                   for (var i = 0;
                                                       i <
@@ -166,21 +140,139 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                           .loadedClaimPage
                                                           .fields[i]
                                                           ?.type;
+
+                                                      items = state
+                                                          .loadedClaimPage
+                                                          .fields[i]
+                                                          ?.items;
                                                     }
+                                                  }
+
+                                                  Widget widget = Container(
+                                                    color: Colors.red,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Column(
+                                                        children: [
+                                                          Text("$text"),
+                                                          Text("$items"),
+                                                          Text("$type")
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+
+                                                  if (type == "Input" ||
+                                                      type == "Date" ||
+                                                      type == "Time") {
+                                                    var textEditingController =
+                                                        TextEditingController(
+                                                            text: state.loadedClaimPage
+                                                                            .values[
+                                                                        "${state.loadedClaimPage.groups[index].fields[index2]}"] !=
+                                                                    null
+                                                                ? "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}"
+                                                                : "");
+
+                                                    textEditingControllers.putIfAbsent(
+                                                        "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                        () =>
+                                                            textEditingController);
+
+                                                    if (type == "Input") {
+                                                      widget = TextInput(
+                                                          text: "$text",
+                                                          textFieldControler:
+                                                              textEditingController);
+                                                    }
+
+                                                    if (type == "Date" ||
+                                                        type == "Time") {
+                                                      String url;
+
+                                                      url = type == "Date"
+                                                          ? "assets/icons/calendar.svg"
+                                                          : "assets/icons/clock.svg";
+                                                      widget = TextInput(
+                                                          text: "$text",
+                                                          textFieldControler:
+                                                              textEditingController,
+                                                          icon2: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(15),
+                                                            child: SvgPicture
+                                                                .asset(
+                                                              "$url",
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                          ));
+                                                    }
+                                                  }
+
+                                                  if (type == "Select") {
+                                                    if (items != "null") {
+                                                      Citizenship str;
+
+                                                      if (state.loadedClaimPage
+                                                                  .values[
+                                                              "${state.loadedClaimPage.groups[index].fields[index2]}"] ==
+                                                          null) {
+                                                        str = Citizenship(
+                                                            id: "none",
+                                                            display: "none");
+                                                      } else {
+                                                        str = Citizenship(
+                                                            id:
+                                                                "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["id"]}",
+                                                            display:
+                                                                "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["display"]}");
+                                                      }
+
+                                                      widget =
+                                                          DropdownInputCopy(
+                                                              text: "$text",
+                                                              list: items,
+                                                              selectedvalue:
+                                                                  str);
+
+                                                      print("str - $str");
+
+                                                      selecteddrops.putIfAbsent(
+                                                          "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                          () => str);
+                                                    }
+                                                  }
+
+                                                  if (type == "Radio") {
+                                                    widget = Column(
+                                                      children: [
+                                                        Text("$text"),
+                                                        ListView.builder(
+                                                            physics:
+                                                                NeverScrollableScrollPhysics(),
+                                                            shrinkWrap: true,
+                                                            itemCount:
+                                                                items.length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index3) {
+                                                              return Text(
+                                                                  items[index3]
+                                                                      .display);
+                                                            })
+                                                      ],
+                                                    );
                                                   }
 
                                                   return Column(
                                                     children: [
                                                       const SizedBox(
                                                           height: 16),
-                                                      Text("_____"),
-                                                      Text(
-                                                          "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}"),
-                                                      Text("_____"),
-                                                      Text("$text"),
-                                                      Text("_____"),
-                                                      Text("$type"),
-                                                      Text("_____"),
+                                                      widget
                                                     ],
                                                   );
                                                 })
