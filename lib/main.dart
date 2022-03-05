@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/cubit/auth/auth_cubit.dart';
 import 'package:kazansummit/cubit/auth/auth_state.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
@@ -30,6 +31,7 @@ import 'utils/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/cubit/locator_services.dart' as servic;
 
+Drops drops = Drops({"null": Citizenship(id: "null", display: "null")});
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: kPrimaryColor,
@@ -66,6 +68,8 @@ class _MyAppState extends State<MyApp> {
               create: (context) => sl<ClaimPageCubit>()),
           BlocProvider<ClaimDeleteCubit>(
               create: (context) => sl<ClaimDeleteCubit>()),
+          BlocProvider<ClaimUpdateCubit>(
+              create: (context) => sl<ClaimUpdateCubit>()),
         ],
         child: BlocBuilder<LangCubit, Locale>(
           builder: (context, locale) => MaterialApp(

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kazansummit/cubit/all/api.dart';
 import 'package:kazansummit/cubit/all/model.dart';
@@ -117,6 +118,32 @@ class ClaimDeleteCubit extends Cubit<ClaimDeleteState> {
       }
     } catch (_) {
       emit(ClaimDeleteErrorState());
+    }
+  }
+}
+
+class ClaimUpdateCubit extends Cubit<ClaimUpdatetate> {
+  ClaimUpdateCubit() : super(ClaimUpdateEmptyState());
+
+  Future<void> updateclaim(
+      String id,
+      String templateId,
+      Map<String, Citizenship> selecteddrops,
+      Map<String, bool> selectedcheck,
+      Map<String, String> selectedradio,
+      Map<String, TextEditingController> textEditingControllers) async {
+    try {
+      String resp = await UpdateClaimApi().update(id, templateId, selecteddrops,
+          selectedcheck, selectedradio, textEditingControllers);
+      print(resp);
+      if (resp == "ok") {
+        print("okl");
+        emit(ClaimUpdateClaimState());
+      } else {
+        emit(ClaimUpdateErrorState());
+      }
+    } catch (_) {
+      emit(ClaimUpdateErrorState());
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:intl/locale.dart';
 import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/cubit/all/model.dart';
@@ -95,6 +96,89 @@ class DeleteClaimApi {
       return kk["statusCode"];
     } else {
       throw Exception('error delete');
+    }
+  }
+}
+
+class UpdateClaimApi {
+  Future<String> update(
+      String statementId,
+      String templateId,
+      Map<String, Citizenship> selecteddrops,
+      Map<String, bool> selectedcheck,
+      Map<String, String> selectedradio,
+      Map<String, TextEditingController> textEditingControllers) async {
+    Map<String, String> headers = {"content-type": "application/json"};
+    if (AppAuth.accessToken != null && AppAuth.accessToken!.isNotEmpty) {
+      headers.addAll({'Authorization': 'Bearer ${AppAuth.accessToken}'});
+    }
+
+    dynamic locale = await sharedPreferences.getString("locale");
+    String localeName = locale;
+
+    Map<String, String> body = {"languageCode": localeName.toUpperCase()};
+    body.addAll({"statementId": statementId});
+    body.addAll({"templateId": templateId});
+    var response;
+
+    if (textEditingControllers != null) {
+      print("update");
+      for (var item in textEditingControllers.entries) {
+        body.addAll({"templateParameterCode": item.key});
+        body.addAll({"value": item.value.text});
+        response = await http.post(
+            Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Edit"),
+            headers: headers,
+            body: jsonEncode(body));
+      }
+    }
+
+    if (selectedradio != null) {
+      print("update");
+      for (var item in selectedradio.entries) {
+        body.addAll({"templateParameterCode": item.key});
+        body.addAll({"value": item.value});
+        response = await http.post(
+            Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Edit"),
+            headers: headers,
+            body: jsonEncode(body));
+      }
+    }
+
+    if (selectedcheck != null) {
+      print("update");
+      for (var item in selectedcheck.entries) {
+        body.addAll({"templateParameterCode": item.key});
+        body.addAll({"value": item.value.toString()});
+        response = await http.post(
+            Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Edit"),
+            headers: headers,
+            body: jsonEncode(body));
+      }
+    }
+
+    if (selecteddrops != null) {
+      print("update");
+      for (var item in selecteddrops.entries) {
+        body.addAll({"templateParameterCode": item.key});
+        body.addAll({"value": item.value.id!});
+
+        print("${item.key}");
+        print("${item.value.id!}");
+
+        response = await http.post(
+            Uri.parse("https://service-ks.maksatlabs.ru/api/Statements/Edit"),
+            headers: headers,
+            body: jsonEncode(body));
+        print("body ${body}");
+        print("response.body ${response.body}");
+      }
+    }
+
+    if (response.statusCode == 200) {
+      return "ok";
+    } else {
+      throw Exception('error update');
     }
   }
 }

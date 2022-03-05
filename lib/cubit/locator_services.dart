@@ -29,4 +29,5 @@ Future<void> init() async {
   sl.registerFactory(() => ClaimPageCubit(claimPageRepository));
 
   sl.registerFactory(() => ClaimDeleteCubit());
+  sl.registerFactory(() => ClaimUpdateCubit());
 }

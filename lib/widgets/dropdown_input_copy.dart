@@ -1,15 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/main.dart';
 import 'package:kazansummit/screens/claim_edit_page.dart';
-
-Citizenship? selectedvalueglobal;
 
 class DropdownInputCopy extends StatefulWidget {
   String text;
   List<Citizenship> list;
   Citizenship selectedvalue;
   String find;
+  Citizenship? selectedvalueglobal = null;
 
   DropdownInputCopy(
       {required this.text,
@@ -24,27 +24,32 @@ class DropdownInputCopy extends StatefulWidget {
 class _DropdownInputCopyState extends State<DropdownInputCopy> {
   @override
   void initState() {
+    sets();
+    super.initState();
+  }
+
+  void sets() {
     if (widget.selectedvalue.id == "none") {
-      selectedvalueglobal = null;
+      widget.selectedvalueglobal = null;
     } else {
       for (var i = 0; i < widget.list.length; i++) {
         if (widget.list[i].id == widget.selectedvalue.id) {
           widget.selectedvalue = widget.list[i];
-          selectedvalueglobal = widget.list[i];
+          widget.selectedvalueglobal = widget.list[i];
         }
       }
     }
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    sets();
     return DropdownButtonFormField<Citizenship>(
+      isExpanded: true,
       decoration: InputDecoration(
         labelText: "${widget.text}",
         contentPadding:
-            EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 4),
+            EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
         isDense: true,
         filled: true,
         fillColor:
@@ -67,18 +72,18 @@ class _DropdownInputCopyState extends State<DropdownInputCopy> {
       ),
       items: widget.list.map((selector) {
         return DropdownMenuItem<Citizenship>(
-            child: Text("${selector.display}"), value: selector);
+            child: AutoSizeText("${selector.display}"), value: selector);
       }).toList(),
       onChanged: (data) {
         setState(() {
           widget.selectedvalue = data!;
           drops.selecteddrops[widget.find] = data;
-          selectedvalueglobal = data;
+          widget.selectedvalueglobal = data;
           print(widget.selectedvalue);
           print(data.display);
         });
       },
-      value: selectedvalueglobal,
+      value: widget.selectedvalueglobal,
     );
   }
 }

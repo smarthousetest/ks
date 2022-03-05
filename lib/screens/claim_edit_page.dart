@@ -17,12 +17,6 @@ import 'package:kazansummit/widgets/green_line.dart';
 import 'package:kazansummit/widgets/text_input.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-Map<String, TextEditingController> textEditingControllers = {};
-
-Map<String, Citizenship> selecteddrops = {};
-
-Drops drops = Drops({"null": Citizenship(id: "null", display: "null")});
-
 class ClaimEditPage extends StatefulWidget {
   const ClaimEditPage({Key? key}) : super(key: key);
 
@@ -31,6 +25,11 @@ class ClaimEditPage extends StatefulWidget {
 }
 
 class _ClaimEditPageState extends State<ClaimEditPage> {
+  Map<String, TextEditingController> textEditingControllers = {};
+  Map<String, String> selectedradio = {};
+  Map<String, bool> selectedcheck = {};
+  String templateId = "";
+
   @override
   Widget build(BuildContext context) {
     RouteSettings settings = ModalRoute.of(context)!.settings;
@@ -49,6 +48,14 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
       }
     });
 
+    context.read<ClaimUpdateCubit>().stream.listen((state) {
+      if (state is ClaimUpdateClaimState) {
+        context.read<ProfilePageCubit>().fetchProfilePage();
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
+      }
+    });
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kBacColor,
@@ -61,8 +68,8 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
-                  for (var item in drops.selecteddrops.entries) {
-                    print("${item.key} - ${item.value.display}");
+                  for (var item in selectedradio.entries) {
+                    print("${item.key} - ${item.value}");
                   }
                 },
                 icon: SvgPicture.asset("assets/icons/notification.svg"))
@@ -75,6 +82,8 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
             return Center(child: CircularProgressIndicator());
           }
           if (state is ClaimPageLoadedState) {
+            templateId = state.loadedClaimPage.templateId;
+
             return SingleChildScrollView(
               //  physics: NeverScrollableScrollPhysics(),
               child: Column(
@@ -219,39 +228,57 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
 
                                                   if (type == "Select") {
                                                     if (items != "null") {
-                                                      Citizenship str;
+                                                      Citizenship? str;
+                                                      print("9");
 
-                                                      if (state.loadedClaimPage
-                                                                  .values[
+                                                      if (drops.selecteddrops[
                                                               "${state.loadedClaimPage.groups[index].fields[index2]}"] ==
                                                           null) {
-                                                        str = Citizenship(
-                                                            id: "none",
-                                                            display: "none");
+                                                        if (state.loadedClaimPage
+                                                                    .values[
+                                                                "${state.loadedClaimPage.groups[index].fields[index2]}"] ==
+                                                            null) {
+                                                          str = Citizenship(
+                                                              id: "none",
+                                                              display: "none");
+                                                        } else {
+                                                          str = Citizenship(
+                                                              id:
+                                                                  "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["id"]}",
+                                                              display:
+                                                                  "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["display"]}");
+                                                        }
                                                       } else {
-                                                        str = Citizenship(
-                                                            id:
-                                                                "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["id"]}",
-                                                            display:
-                                                                "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]["display"]}");
+                                                        str = drops
+                                                                .selecteddrops[
+                                                            "${state.loadedClaimPage.groups[index].fields[index2]}"];
                                                       }
 
-                                                      widget = DropdownInputCopy(
-                                                          text: "$text",
-                                                          list: items,
-                                                          find:
-                                                              "${state.loadedClaimPage.groups[index].fields[index2]}",
-                                                          selectedvalue: str);
+                                                      print("8");
+                                                      widget = Form(
+                                                        child: DropdownInputCopy(
+                                                            text: "$text",
+                                                            list: items,
+                                                            find:
+                                                                "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                            selectedvalue:
+                                                                str!),
+                                                      );
+
+                                                      print("7");
 
                                                       drops.selecteddrops
                                                           .putIfAbsent(
                                                               "${state.loadedClaimPage.groups[index].fields[index2]}",
-                                                              () => str);
+                                                              () => str!);
                                                     }
                                                   }
 
                                                   if (type == "Radio") {
                                                     widget = Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text("$text"),
                                                         ListView.builder(
@@ -263,10 +290,81 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                             itemBuilder:
                                                                 (context,
                                                                     index3) {
-                                                              return Text(
-                                                                  items[index3]
-                                                                      .display);
+                                                              selectedradio.putIfAbsent(
+                                                                  "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                                  () => state
+                                                                          .loadedClaimPage
+                                                                          .values[
+                                                                      "${state.loadedClaimPage.groups[index].fields[index2]}"]);
+
+                                                              return Row(
+                                                                children: [
+                                                                  Radio<String>(
+                                                                    value: items[
+                                                                            index3]
+                                                                        .id,
+                                                                    groupValue:
+                                                                        selectedradio[
+                                                                            "${state.loadedClaimPage.groups[index].fields[index2]}"],
+                                                                    onChanged:
+                                                                        (value) {
+                                                                      print(
+                                                                          value);
+                                                                      setState(
+                                                                          () {
+                                                                        selectedradio["${state.loadedClaimPage.groups[index].fields[index2]}"] =
+                                                                            value!;
+                                                                      });
+                                                                    },
+                                                                    activeColor:
+                                                                        kIconColor,
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width:
+                                                                          16),
+                                                                  Text(items[
+                                                                          index3]
+                                                                      .display)
+                                                                ],
+                                                              );
+
+                                                              //  Text(
+                                                              //     items[index3]
+                                                              //         .display);
                                                             })
+                                                      ],
+                                                    );
+                                                  }
+
+                                                  if (type == "Checkbox") {
+                                                    print(state.loadedClaimPage
+                                                            .values[
+                                                        "${state.loadedClaimPage.groups[index].fields[index2]}"]);
+
+                                                    selectedcheck.putIfAbsent(
+                                                        "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                        () => (state.loadedClaimPage
+                                                                        .values[
+                                                                    "${state.loadedClaimPage.groups[index].fields[index2]}"]) ==
+                                                                'true'
+                                                            ? true
+                                                            : false);
+
+                                                    widget = Row(
+                                                      children: [
+                                                        Checkbox(
+                                                            value: selectedcheck[
+                                                                "${state.loadedClaimPage.groups[index].fields[index2]}"],
+                                                            onChanged: (val) {
+                                                              setState(() {
+                                                                selectedcheck[
+                                                                        "${state.loadedClaimPage.groups[index].fields[index2]}"] =
+                                                                    val!;
+                                                              });
+                                                            }),
+                                                        Flexible(
+                                                            child:
+                                                                Text("$text"))
                                                       ],
                                                     );
                                                   }
@@ -284,7 +382,49 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                           ],
                         );
                       }),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            context.read<ClaimUpdateCubit>().updateclaim(
+                                id,
+                                templateId,
+                                drops.selecteddrops,
+                                selectedcheck,
+                                selectedradio,
+                                textEditingControllers);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Text(
+                              "${AppLocalizations.of(context)?.savechanges}",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                          onPressed: () {
+                            showAlertDialog(context, id);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Text(
+                              "${AppLocalizations.of(context)?.deleteapplication}",
+                              style: TextStyle(
+                                  fontSize: 16, color: Color(0xffB03A35)),
+                            ),
+                          )),
+                    ),
+                  ),
                 ],
               ),
             );

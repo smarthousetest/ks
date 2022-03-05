@@ -41,3 +41,11 @@ class ClaimDeleteClaimState extends ClaimDeleteState {}
 class ClaimDeleteErrorState extends ClaimDeleteState {}
 
 class ClaimDeleteEmptyState extends ClaimDeleteState {}
+
+abstract class ClaimUpdatetate {}
+
+class ClaimUpdateClaimState extends ClaimUpdatetate {}
+
+class ClaimUpdateErrorState extends ClaimUpdatetate {}
+
+class ClaimUpdateEmptyState extends ClaimUpdatetate {}

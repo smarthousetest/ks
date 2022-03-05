@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/cubit/all/cubit.dart';
+import 'package:kazansummit/cubit/all/model.dart';
 import 'package:kazansummit/cubit/all/state.dart';
+import 'package:kazansummit/main.dart';
+import 'package:kazansummit/other/drops.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/widgets/green_line.dart';
@@ -33,6 +36,9 @@ class ClaimPage extends StatelessWidget {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
+                  drops.selecteddrops = {
+                    "null": Citizenship(id: "null", display: "null")
+                  };
                   Navigator.pushNamed(context, '/claimeditpage', arguments: id);
                 },
                 icon: SvgPicture.asset("assets/icons/editp.svg")),
@@ -83,6 +89,7 @@ class ClaimPage extends StatelessWidget {
                                 itemBuilder: (context, index2) {
                                   String? text = "";
                                   String? text2 = "";
+                                  String? type = "";
                                   for (var i = 0;
                                       i < state.loadedClaimPage.fields?.length;
                                       i++) {
@@ -91,6 +98,9 @@ class ClaimPage extends StatelessWidget {
                                         state.loadedClaimPage.fields[i].code) {
                                       text = state
                                           .loadedClaimPage.fields[i]?.display;
+
+                                      type =
+                                          state.loadedClaimPage.fields[i]?.type;
                                     }
                                   }
 
@@ -103,6 +113,8 @@ class ClaimPage extends StatelessWidget {
                                     text2 =
                                         "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}";
                                   }
+
+                                  if (type == "Radio") {}
 
                                   if (text2 == "null") {
                                     schet++;

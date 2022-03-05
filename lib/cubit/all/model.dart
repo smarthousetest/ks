@@ -116,7 +116,7 @@ class ClaimPageModel {
   factory ClaimPageModel.fromJson(Map<String, dynamic> json) {
     return ClaimPageModel(
         id: json["id"] == null ? null : json["id"],
-        templateId: json["templateId"] == null ? null : json["templateId"],
+        templateId: json["TemplateId"] == null ? null : json["TemplateId"],
         groups: json["groups"] == null
             ? null
             : List<Group>.from(json["groups"].map((x) => Group.fromJson(x))),
@@ -143,24 +143,24 @@ class Field {
   bool? disabled;
 
   factory Field.fromJson(Map<String, dynamic> json) => Field(
-        type: json["type"] == null ? null : json["type"],
-        items: json["items"] == null
+        type: json["Type"] == null ? null : json["Type"],
+        items: json["Items"] == null
             ? null
             : List<Citizenship>.from(
-                json["items"].map((x) => Citizenship.fromJson(x))),
+                json["Items"].map((x) => Citizenship.fromJson(x))),
         display: json["display"] == null ? null : json["display"],
-        code: json["code"] == null ? null : json["code"],
-        disabled: json["disabled"] == null ? null : json["disabled"],
+        code: json["Code"] == null ? null : json["Code"],
+        disabled: json["Disabled"] == null ? null : json["Disabled"],
       );
 
   Map<String, dynamic> toJson() => {
-        "type": type == null ? null : type,
-        "items": items == null
+        "Type": type == null ? null : type,
+        "Items": items == null
             ? null
             : List<dynamic>.from(items!.map((x) => x?.toJson())),
         "display": display == null ? null : display,
-        "code": code == null ? null : code,
-        "disabled": disabled == null ? null : disabled,
+        "Code": code == null ? null : code,
+        "Disabled": disabled == null ? null : disabled,
       };
 }
 
