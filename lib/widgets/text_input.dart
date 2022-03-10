@@ -5,6 +5,7 @@ class TextInput extends StatefulWidget {
   String text;
   TextEditingController textFieldControler;
   bool multline = false;
+  bool enabled = false;
   Widget? icon;
   Widget? icon2;
 
@@ -12,6 +13,7 @@ class TextInput extends StatefulWidget {
       {required this.text,
       required this.textFieldControler,
       this.multline = false,
+      this.enabled = false,
       this.icon,
       this.icon2});
 
@@ -23,6 +25,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        //  enabled: widget.enabled ? false : true,
         expands: widget.multline ? true : false,
         maxLines: widget.multline ? null : 1,
         onChanged: (newValue) {

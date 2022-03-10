@@ -88,5 +88,8 @@
 "no":"Нет",
 "noapplications":"Нет заявок",
 "allyourapplications":"На этой странице будут собраны все ваши заявки.",
-"noinformation":"Информация отсутствует"
+"noinformation":"Информация отсутствует",
+"yourmessage":"Ваше сообщение",
+"messagehasbeensent":"Сообщение отправлено!",
+"gobackto":"Вернуться на"
 }

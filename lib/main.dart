@@ -7,6 +7,8 @@ import 'package:kazansummit/cubit/auth/auth_state.dart';
 import 'package:kazansummit/cubit/locator_services.dart';
 import 'package:kazansummit/other/drops.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
+import 'package:kazansummit/screens/b2b_page.dart';
+import 'package:kazansummit/screens/b2b_page_open.dart';
 import 'package:kazansummit/screens/claim_edit_page.dart';
 import 'package:kazansummit/screens/claim_page.dart';
 import 'package:kazansummit/screens/event_page.dart';
@@ -27,6 +29,7 @@ import 'package:kazansummit/utils/constants.dart';
 import 'package:kazansummit/cubit/all/cubit.dart';
 import 'package:kazansummit/widgets/sliding_auth.dart';
 import 'package:kazansummit/widgets/sliding_filter.dart';
+import 'package:kazansummit/widgets/sliding_filterb2b.dart';
 import 'utils/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kazansummit/cubit/locator_services.dart' as servic;
@@ -56,6 +59,8 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<BottomNavigationControllerSelect>(
               create: (context) => sl<BottomNavigationControllerSelect>()),
           BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
+          BlocProvider<FilterB2bCubit>(
+              create: (context) => sl<FilterB2bCubit>()),
           BlocProvider<LangCubit>(
               create: (context) => sl<LangCubit>()..getlocale()),
           BlocProvider<SlidingAutgCubit>(
@@ -106,6 +111,8 @@ class _MyAppState extends State<MyApp> {
               '/claimeditpage': (BuildContext context) => ClaimEditPage(),
               '/evantputpage': (BuildContext context) => EventPagePut(),
               '/main': (BuildContext context) => Management(),
+              '/b2b': (BuildContext context) => B2bPage(),
+              '/b2bopen': (BuildContext context) => B2bPageOpen(),
             },
           ),
         ));

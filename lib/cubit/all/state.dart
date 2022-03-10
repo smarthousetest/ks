@@ -46,6 +46,14 @@ abstract class ClaimUpdatetate {}
 
 class ClaimUpdateClaimState extends ClaimUpdatetate {}
 
+class ClaimLoadedClaimState extends ClaimUpdatetate {}
+
 class ClaimUpdateErrorState extends ClaimUpdatetate {}
 
 class ClaimUpdateEmptyState extends ClaimUpdatetate {}
+
+abstract class FilterB2bState {}
+
+class FilterB2bOpenState extends FilterB2bState {}
+
+class FilterB2bClosedState extends FilterB2bState {}

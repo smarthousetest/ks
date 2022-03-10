@@ -13,6 +13,7 @@ final claimPageRepository = ClaimPageRepository();
 Future<void> init() async {
   sl.registerFactory(() => BottomNavigationControllerSelect());
   sl.registerFactory(() => FilterCubit());
+  sl.registerFactory(() => FilterB2bCubit());
   sl.registerFactory(() => LangCubit());
   sl.registerFactory(() => SlidingAutgCubit());
   sl.registerFactory(() => AuthCubit());

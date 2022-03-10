@@ -132,6 +132,7 @@ class ClaimUpdateCubit extends Cubit<ClaimUpdatetate> {
       Map<String, bool> selectedcheck,
       Map<String, String> selectedradio,
       Map<String, TextEditingController> textEditingControllers) async {
+    emit(ClaimLoadedClaimState());
     try {
       String resp = await UpdateClaimApi().update(id, templateId, selecteddrops,
           selectedcheck, selectedradio, textEditingControllers);
@@ -145,5 +146,20 @@ class ClaimUpdateCubit extends Cubit<ClaimUpdatetate> {
     } catch (_) {
       emit(ClaimUpdateErrorState());
     }
+  }
+}
+
+class FilterB2bCubit extends Cubit<FilterB2bState> {
+  FilterB2bCubit() : super(FilterB2bClosedState());
+
+  Future<void> open() async {
+    print("object");
+    if (state is FilterB2bOpenState) emit(FilterB2bClosedState());
+    emit(FilterB2bOpenState());
+  }
+
+  Future<void> hide() async {
+    if (state is FilterB2bClosedState) return;
+    emit(FilterB2bClosedState());
   }
 }

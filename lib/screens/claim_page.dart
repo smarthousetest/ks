@@ -90,6 +90,7 @@ class ClaimPage extends StatelessWidget {
                                   String? text = "";
                                   String? text2 = "";
                                   String? type = "";
+                                  var items;
                                   for (var i = 0;
                                       i < state.loadedClaimPage.fields?.length;
                                       i++) {
@@ -101,6 +102,9 @@ class ClaimPage extends StatelessWidget {
 
                                       type =
                                           state.loadedClaimPage.fields[i]?.type;
+
+                                      items = state
+                                          .loadedClaimPage.fields[i]?.items;
                                     }
                                   }
 
@@ -114,7 +118,13 @@ class ClaimPage extends StatelessWidget {
                                         "${state.loadedClaimPage.values["${state.loadedClaimPage.groups[index].fields[index2]}"]}";
                                   }
 
-                                  if (type == "Radio") {}
+                                  if (type == "Radio") {
+                                    for (var i2 = 0; i2 < items!.length; i2++) {
+                                      if (text2 == items[i2].id) {
+                                        text2 = items[i2].display;
+                                      }
+                                    }
+                                  }
 
                                   if (text2 == "null") {
                                     schet++;
@@ -165,18 +175,31 @@ class ClaimPage extends StatelessWidget {
                                       const SizedBox(height: 16),
                                       Row(children: [
                                         Flexible(
-                                          child: Text(
-                                            "${text}:",
-                                            style: kzayavgreenTextStyle,
-                                          ),
+                                          child: RichText(
+                                              text: TextSpan(children: [
+                                            TextSpan(
+                                              text: "${text}: ",
+                                              style: kzayavgreenTextStyle,
+                                            ),
+                                            TextSpan(
+                                              text: "${text2}",
+                                              style: kzayavblackTextStyle,
+                                            ),
+                                          ])),
                                         ),
-                                        const SizedBox(width: 5),
-                                        Flexible(
-                                          child: AutoSizeText(
-                                            "${text2}",
-                                            style: kzayavblackTextStyle,
-                                          ),
-                                        )
+                                        // Flexible(
+                                        //   child: Text(
+                                        //     "${text}:",
+                                        //     style: kzayavgreenTextStyle,
+                                        //   ),
+                                        // ),
+                                        // const SizedBox(width: 5),
+                                        // Flexible(
+                                        //   child: AutoSizeText(
+                                        //     "${text2}",
+                                        //     style: kzayavblackTextStyle,
+                                        //   ),
+                                        // )
                                       ])
                                     ]),
                                   );

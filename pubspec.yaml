@@ -67,6 +67,14 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  flutter_native_splash: ^2.1.0
+
+flutter_native_splash:
+  color: "#E5E5E5"
+  image: "assets/images/logow.png"
+  android: true
+  ios: true
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -138,6 +146,7 @@ flutter:
       - assets/images/cat.png
       - assets/images/greenbg.svg
       - assets/images/whitebg.svg
+      - assets/images/logow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -90,6 +90,9 @@
 "noapplications":"No applications",
 "allyourapplications":"All your applications will be on this page.",
 "noinformation":"No information",
+"yourmessage":"Your message",
+"messagehasbeensent":"Message has been sent!",
+"gobackto":"Go back to",
     "hello": "Hello {username}",
     "@hello": {
       "description": "A welcome message",

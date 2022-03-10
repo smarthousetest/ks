@@ -132,6 +132,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                 itemBuilder: (context, index2) {
                                                   String? text = "";
                                                   String? type = "";
+                                                  String? disabled = "";
                                                   var items;
 
                                                   for (var i = 0;
@@ -149,6 +150,7 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                           .loadedClaimPage
                                                           .fields[i]
                                                           ?.display;
+
                                                       type = state
                                                           .loadedClaimPage
                                                           .fields[i]
@@ -158,6 +160,12 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                           .loadedClaimPage
                                                           .fields[i]
                                                           ?.items;
+
+                                                      disabled = state
+                                                          .loadedClaimPage
+                                                          .fields[i]
+                                                          ?.disabled
+                                                          .toString();
                                                     }
                                                   }
 
@@ -195,10 +203,16 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                             textEditingController);
 
                                                     if (type == "Input") {
-                                                      widget = TextInput(
-                                                          text: "$text",
-                                                          textFieldControler:
-                                                              textEditingController);
+                                                      widget = AbsorbPointer(
+                                                        absorbing:
+                                                            disabled == "true"
+                                                                ? true
+                                                                : false,
+                                                        child: TextInput(
+                                                            text: "$text",
+                                                            textFieldControler:
+                                                                textEditingController),
+                                                      );
                                                     }
 
                                                     if (type == "Date" ||
@@ -208,21 +222,27 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                       url = type == "Date"
                                                           ? "assets/icons/calendar.svg"
                                                           : "assets/icons/clock.svg";
-                                                      widget = TextInput(
-                                                          text: "$text",
-                                                          textFieldControler:
-                                                              textEditingController,
-                                                          icon2: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(15),
-                                                            child: SvgPicture
-                                                                .asset(
-                                                              "$url",
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                          ));
+                                                      widget = AbsorbPointer(
+                                                        absorbing:
+                                                            disabled == "true"
+                                                                ? true
+                                                                : false,
+                                                        child: TextInput(
+                                                            text: "$text",
+                                                            textFieldControler:
+                                                                textEditingController,
+                                                            icon2: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(15),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                "$url",
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                            )),
+                                                      );
                                                     }
                                                   }
 
@@ -255,14 +275,20 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                       }
 
                                                       print("8");
-                                                      widget = Form(
-                                                        child: DropdownInputCopy(
-                                                            text: "$text",
-                                                            list: items,
-                                                            find:
-                                                                "${state.loadedClaimPage.groups[index].fields[index2]}",
-                                                            selectedvalue:
-                                                                str!),
+                                                      widget = AbsorbPointer(
+                                                        absorbing:
+                                                            disabled == "true"
+                                                                ? true
+                                                                : false,
+                                                        child: Form(
+                                                          child: DropdownInputCopy(
+                                                              text: "$text",
+                                                              list: items,
+                                                              find:
+                                                                  "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                              selectedvalue:
+                                                                  str!),
+                                                        ),
                                                       );
 
                                                       print("7");
@@ -275,64 +301,70 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                   }
 
                                                   if (type == "Radio") {
-                                                    widget = Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text("$text"),
-                                                        ListView.builder(
-                                                            physics:
-                                                                NeverScrollableScrollPhysics(),
-                                                            shrinkWrap: true,
-                                                            itemCount:
-                                                                items.length,
-                                                            itemBuilder:
-                                                                (context,
-                                                                    index3) {
-                                                              selectedradio.putIfAbsent(
-                                                                  "${state.loadedClaimPage.groups[index].fields[index2]}",
-                                                                  () => state
-                                                                          .loadedClaimPage
-                                                                          .values[
-                                                                      "${state.loadedClaimPage.groups[index].fields[index2]}"]);
+                                                    widget = AbsorbPointer(
+                                                      absorbing:
+                                                          disabled == "true"
+                                                              ? true
+                                                              : false,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text("$text"),
+                                                          ListView.builder(
+                                                              physics:
+                                                                  NeverScrollableScrollPhysics(),
+                                                              shrinkWrap: true,
+                                                              itemCount:
+                                                                  items.length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index3) {
+                                                                selectedradio.putIfAbsent(
+                                                                    "${state.loadedClaimPage.groups[index].fields[index2]}",
+                                                                    () => state
+                                                                        .loadedClaimPage
+                                                                        .values["${state.loadedClaimPage.groups[index].fields[index2]}"]);
 
-                                                              return Row(
-                                                                children: [
-                                                                  Radio<String>(
-                                                                    value: items[
+                                                                return Row(
+                                                                  children: [
+                                                                    Radio<
+                                                                        String>(
+                                                                      value: items[
+                                                                              index3]
+                                                                          .id,
+                                                                      groupValue:
+                                                                          selectedradio[
+                                                                              "${state.loadedClaimPage.groups[index].fields[index2]}"],
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        print(
+                                                                            value);
+                                                                        setState(
+                                                                            () {
+                                                                          selectedradio["${state.loadedClaimPage.groups[index].fields[index2]}"] =
+                                                                              value!;
+                                                                        });
+                                                                      },
+                                                                      activeColor:
+                                                                          kIconColor,
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width:
+                                                                            16),
+                                                                    Text(items[
                                                                             index3]
-                                                                        .id,
-                                                                    groupValue:
-                                                                        selectedradio[
-                                                                            "${state.loadedClaimPage.groups[index].fields[index2]}"],
-                                                                    onChanged:
-                                                                        (value) {
-                                                                      print(
-                                                                          value);
-                                                                      setState(
-                                                                          () {
-                                                                        selectedradio["${state.loadedClaimPage.groups[index].fields[index2]}"] =
-                                                                            value!;
-                                                                      });
-                                                                    },
-                                                                    activeColor:
-                                                                        kIconColor,
-                                                                  ),
-                                                                  SizedBox(
-                                                                      width:
-                                                                          16),
-                                                                  Text(items[
-                                                                          index3]
-                                                                      .display)
-                                                                ],
-                                                              );
+                                                                        .display)
+                                                                  ],
+                                                                );
 
-                                                              //  Text(
-                                                              //     items[index3]
-                                                              //         .display);
-                                                            })
-                                                      ],
+                                                                //  Text(
+                                                                //     items[index3]
+                                                                //         .display);
+                                                              })
+                                                        ],
+                                                      ),
                                                     );
                                                   }
 
@@ -350,22 +382,28 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                                             ? true
                                                             : false);
 
-                                                    widget = Row(
-                                                      children: [
-                                                        Checkbox(
-                                                            value: selectedcheck[
-                                                                "${state.loadedClaimPage.groups[index].fields[index2]}"],
-                                                            onChanged: (val) {
-                                                              setState(() {
-                                                                selectedcheck[
-                                                                        "${state.loadedClaimPage.groups[index].fields[index2]}"] =
-                                                                    val!;
-                                                              });
-                                                            }),
-                                                        Flexible(
-                                                            child:
-                                                                Text("$text"))
-                                                      ],
+                                                    widget = AbsorbPointer(
+                                                      absorbing:
+                                                          disabled == "true"
+                                                              ? true
+                                                              : false,
+                                                      child: Row(
+                                                        children: [
+                                                          Checkbox(
+                                                              value: selectedcheck[
+                                                                  "${state.loadedClaimPage.groups[index].fields[index2]}"],
+                                                              onChanged: (val) {
+                                                                setState(() {
+                                                                  selectedcheck[
+                                                                          "${state.loadedClaimPage.groups[index].fields[index2]}"] =
+                                                                      val!;
+                                                                });
+                                                              }),
+                                                          Flexible(
+                                                              child:
+                                                                  Text("$text"))
+                                                        ],
+                                                      ),
                                                     );
                                                   }
 
@@ -398,12 +436,21 @@ class _ClaimEditPageState extends State<ClaimEditPage> {
                                 textEditingControllers);
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Text(
-                              "${AppLocalizations.of(context)?.savechanges}",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          )),
+                              padding: const EdgeInsets.all(14.0),
+                              child: BlocBuilder<ClaimUpdateCubit,
+                                  ClaimUpdatetate>(builder: (context, state) {
+                                if (state is ClaimLoadedClaimState) {
+                                  return Center(
+                                      child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ));
+                                }
+
+                                return Text(
+                                  "${AppLocalizations.of(context)?.savechanges}",
+                                  style: TextStyle(fontSize: 16),
+                                );
+                              }))),
                     ),
                   ),
                   Padding(

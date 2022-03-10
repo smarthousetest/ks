@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kazansummit/screens/%D1%81ontacts_page.dart';
 import 'package:kazansummit/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -74,7 +75,9 @@ class MainPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/evantputpage');
+                        UrlLauncher.launch("https://web.kazansummit.com/");
+
+                        //   Navigator.pushNamed(context, '/evantputpage');
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),

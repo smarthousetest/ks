@@ -41,7 +41,12 @@ class ServicesPage extends StatelessWidget {
             children: [
               ServicesCard(text: "Голосование", icon: "assets/icons/golos.svg"),
               SizedBox(height: 16),
-              ServicesCard(text: " B2B", icon: "assets/icons/b2b.svg")
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/b2b');
+                  },
+                  child:
+                      ServicesCard(text: " B2B", icon: "assets/icons/b2b.svg"))
             ],
           ),
         ),
